@@ -7,7 +7,7 @@
   "plugins": ["jest", "security", "prettier", "@typescript-eslint"],
   "parserOptions": {
     "ecmaVersion": 2018,
-    "project": "./src/tsconfig.json"
+    "project": ["./tsconfig.json", "./src/tsconfig.json"]
   },
   "rules": {
     "no-console": "error",

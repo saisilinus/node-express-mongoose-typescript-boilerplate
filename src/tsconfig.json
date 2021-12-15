@@ -100,5 +100,9 @@
   },
   "references": [
     { "path": "../" }
+  ],
+  "include": [
+    ".",
+    "../jest.config.js",
   ]
 }

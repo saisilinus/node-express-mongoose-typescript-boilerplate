@@ -99,6 +99,9 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "files": [
-    "package.json"
+    "package.json",
+  ],
+  "include": [
+    "jest.config.js"
   ]
 }
