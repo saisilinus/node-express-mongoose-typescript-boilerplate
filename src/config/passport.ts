@@ -1,9 +1,8 @@
 import { Request } from 'express';
 import { Strategy as JwtStrategy } from 'passport-jwt';
-import tokenTypes from '../tokens/tokens.types';
+import tokenTypes from '../Tokens/tokens.types';
 import config from './config';
-
-const { User } = require('../models');
+import User from '../Users/users.model';
 
 interface Payload {
   sub: string;

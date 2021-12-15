@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
+import { Schema } from 'mongoose';
 
-const paginate = (schema: any) => {
+const paginate = (schema: Schema) => {
   /**
    * @typedef {Object} QueryResult
    * @property {Document[]} results - Results found

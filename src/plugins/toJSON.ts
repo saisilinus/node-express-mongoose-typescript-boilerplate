@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import { Document } from 'mongoose';
 
 /**
  * A mongoose schema plugin which applies the following in the toJSON transform call:
@@ -21,7 +22,7 @@ const toJSON = (schema: any) => {
   }
 
   schema.options.toJSON = Object.assign(schema.options.toJSON || {}, {
-    transform(doc: any, ret: any, options: Record<string, any>) {
+    transform(doc: Document, ret: any, options: Record<string, any>) {
       Object.keys(schema.paths).forEach((path) => {
         if (schema.paths[path].options && schema.paths[path].options.private) {
           deleteAtPath(ret, path.split('.'), 0);
