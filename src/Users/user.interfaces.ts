@@ -1,4 +1,4 @@
-import { Model, ObjectId } from 'mongoose';
+import { Model, ObjectId, LeanDocument, Document } from 'mongoose';
 import { QueryResult } from '../plugins/paginate';
 
 export interface IUser {
@@ -9,26 +9,30 @@ export interface IUser {
   isEmailVerified?: boolean;
 }
 
-export interface ToJSONUser {
-  name: string;
-  email: string;
-  password: string;
-  role: string;
-  isEmailVerified: boolean;
-  id: ObjectId;
+export interface IUserDoc extends IUser, Document {
+  isPasswordMatch(password: string): Promise<boolean>;
+}
+
+export interface IUserModel extends Model<IUserDoc> {
+  isEmailTaken(email: string, excludeUserId?: ObjectId): Promise<boolean>;
+  paginate(filter: Record<string, any>, options: Record<string, any>): Promise<QueryResult>;
+  toJSON(): LeanDocument<this>;
 }
 
 export interface IUserStatics extends Model<IUser> {
   isEmailTaken(email: string, excludeUserId?: ObjectId): Promise<boolean>;
-  isPasswordMatch(password: string): Promise<boolean>;
   paginate(filter: Record<string, any>, options: Record<string, any>): Promise<QueryResult>;
-  toJSON(): void;
+  toJSON(): LeanDocument<this>;
 }
+
+export type IUserAndUserStatics = IUser & IUserStatics;
 
 export interface UpdateUserBody {
   name?: string;
   email?: string;
   password?: string;
+  role?: string;
+  isEmailVerified?: boolean;
 }
 
 export interface NewRegisteredUser {
@@ -42,4 +46,8 @@ export interface NewCreatedUser {
   email: string;
   password: string;
   role: string;
+}
+
+export interface ToJSONUser extends IUserDoc {
+  id: ObjectId;
 }

@@ -4,9 +4,9 @@ import bcrypt from 'bcryptjs';
 import toJSON from '../plugins/toJSON';
 import paginate from '../plugins/paginate';
 import { roles } from '../config/roles';
-import { IUser, IUserStatics } from './user.interfaces';
+import { IUserDoc, IUserModel } from './user.interfaces';
 
-const userSchema = new Schema<IUser, IUserStatics>(
+const userSchema = new Schema<IUserDoc, IUserModel>(
   {
     name: {
       type: String,
@@ -85,6 +85,6 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-const User = model<IUser, IUserStatics>('User', userSchema);
+const User = model<IUserDoc, IUserModel>('User', userSchema);
 
 export default User;
