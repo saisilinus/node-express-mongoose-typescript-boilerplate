@@ -19,14 +19,6 @@ export interface IUserModel extends Model<IUserDoc> {
   toJSON(): LeanDocument<this>;
 }
 
-export interface IUserStatics extends Model<IUser> {
-  isEmailTaken(email: string, excludeUserId?: ObjectId): Promise<boolean>;
-  paginate(filter: Record<string, any>, options: Record<string, any>): Promise<QueryResult>;
-  toJSON(): LeanDocument<this>;
-}
-
-export type IUserAndUserStatics = IUser & IUserStatics;
-
 export interface UpdateUserBody {
   name?: string;
   email?: string;
@@ -46,8 +38,4 @@ export interface NewCreatedUser {
   email: string;
   password: string;
   role: string;
-}
-
-export interface ToJSONUser extends IUserDoc {
-  id: ObjectId;
 }
