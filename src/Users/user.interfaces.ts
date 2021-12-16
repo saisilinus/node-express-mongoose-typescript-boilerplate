@@ -5,8 +5,8 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
-  role?: string;
-  isEmailVerified?: boolean;
+  role: string;
+  isEmailVerified: boolean;
 }
 
 export interface IUserDoc extends IUser, Document {

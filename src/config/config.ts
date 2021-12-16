@@ -49,6 +49,11 @@ export default {
     refreshExpirationDays: envVars.JWT_REFRESH_EXPIRATION_DAYS,
     resetPasswordExpirationMinutes: envVars.JWT_RESET_PASSWORD_EXPIRATION_MINUTES,
     verifyEmailExpirationMinutes: envVars.JWT_VERIFY_EMAIL_EXPIRATION_MINUTES,
+    cookieOptions: {
+      httpOnly: true,
+      secure: envVars.NODE_ENV === 'production',
+      signed: true,
+    },
   },
   email: {
     smtp: {

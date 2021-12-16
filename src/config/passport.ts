@@ -8,7 +8,7 @@ import { IPayload } from '../Tokens/token.interfaces';
 const cookieExtractor = function (req: Request): string {
   let token = null;
   if (req && req.cookies) {
-    token = req.cookies.jwt;
+    token = req.cookies.accessToken;
   }
   return token;
 };
