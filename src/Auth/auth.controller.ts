@@ -37,6 +37,8 @@ export const loginController = catchAsync(async (req: Request, res: Response) =>
 
 export const logoutController = catchAsync(async (req: Request, res: Response) => {
   await logout(req.cookies.refreshToken);
+  res.clearCookie('accessToken');
+  res.clearCookie('refreshToken');
   res.status(httpStatus.NO_CONTENT).send();
 });
 
@@ -54,6 +56,7 @@ export const forgotPasswordController = catchAsync(async (req: Request, res: Res
 
 export const resetPasswordController = catchAsync(async (req: Request, res: Response) => {
   await resetPassword(req.cookies.resetPasswordToken, req.body.password);
+  res.clearCookie('resetPasswordToken');
   res.status(httpStatus.NO_CONTENT).send();
 });
 
@@ -68,5 +71,6 @@ export const verifyEmailController = catchAsync(async (req: Request, res: Respon
   if (user) {
     await sendAccountCreated(user.email, user.name);
   }
+  res.clearCookie('verifyEmailToken');
   res.status(httpStatus.NO_CONTENT).send();
 });

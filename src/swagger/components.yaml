@@ -90,3 +90,7 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+    cookieAuth:
+      type: ApiKey
+      in: cookie
+      name: accessToken

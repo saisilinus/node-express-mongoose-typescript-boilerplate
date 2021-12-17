@@ -272,7 +272,7 @@ export default router;
  *     description: An email will be sent to verify email.
  *     tags: [Auth]
  *     security:
- *       - bearerAuth: []
+ *       - cookieAuth: []
  *     responses:
  *       "204":
  *         description: No content

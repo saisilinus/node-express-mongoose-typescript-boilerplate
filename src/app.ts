@@ -13,6 +13,7 @@ import jwtStrategy from './config/passport';
 import authLimiter from './middlewares/rateLimiter';
 import ApiError from './utils/ApiError';
 import { errorConverter, errorHandler } from './middlewares/error';
+import routes from './routes';
 
 const app: Express = express();
 
@@ -52,6 +53,9 @@ passport.use('jwt', jwtStrategy);
 if (config.env === 'production') {
   app.use('/v1/auth', authLimiter);
 }
+
+// v1 api routes
+app.use('/v1', routes);
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
