@@ -5,7 +5,7 @@ import config from '../config/config';
 import logger from '../config/logger';
 import ApiError from '../utils/ApiError';
 
-export const errorConverter = (err: any, req: Request, res: Response, next: NextFunction) => {
+export const errorConverter = (err: any, _req: Request, _res: Response, next: NextFunction) => {
   let error = err;
   if (!(error instanceof ApiError)) {
     const statusCode =
@@ -18,7 +18,7 @@ export const errorConverter = (err: any, req: Request, res: Response, next: Next
 
 // eslint-disable-next-line no-unused-vars
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
+export const errorHandler = (err: any, _req: Request, res: Response, _next: NextFunction) => {
   let { statusCode, message } = err;
   if (config.env === 'production' && !err.isOperational) {
     statusCode = httpStatus.INTERNAL_SERVER_ERROR;

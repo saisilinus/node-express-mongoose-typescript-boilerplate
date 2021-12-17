@@ -8,7 +8,7 @@ import { Document } from 'mongoose';
 const inlineToJSON = (schema: any) => {
   schema.options.toJSON = {};
   schema.options.toJSON.hide = '';
-  schema.options.toJSON.transform = function (doc: Document, ret: any, options: Record<string, any>) {
+  schema.options.toJSON.transform = function (_doc: Document, ret: any, options: Record<string, any>) {
     if (options['hide']) {
       options['hide'].split(' ').forEach(function (prop: string) {
         delete ret[prop];
