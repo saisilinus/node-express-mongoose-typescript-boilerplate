@@ -18,7 +18,7 @@ export const sendTokens = (res: Response, tokens: AccessAndRefreshTokens) => {
   res.cookie('refreshToken', tokens.refresh, config.jwt.cookieOptions);
 };
 
-export const register = catchAsync(async (req: Request, res: Response) => {
+export const registerController = catchAsync(async (req: Request, res: Response) => {
   const user = await createUser(req.body);
   const tokens = await generateAuthTokens(user);
   const verifyEmailToken = await generateVerifyEmailToken(user);
@@ -27,7 +27,7 @@ export const register = catchAsync(async (req: Request, res: Response) => {
   res.status(httpStatus.CREATED).send({ user });
 });
 
-export const login = catchAsync(async (req: Request, res: Response) => {
+export const loginController = catchAsync(async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const user = await loginUserWithEmailAndPassword(email, password);
   const tokens = await generateAuthTokens(user);
@@ -40,13 +40,13 @@ export const logoutController = catchAsync(async (req: Request, res: Response) =
   res.status(httpStatus.NO_CONTENT).send();
 });
 
-export const refreshTokens = catchAsync(async (req: Request, res: Response) => {
+export const refreshTokensController = catchAsync(async (req: Request, res: Response) => {
   const tokens = await refreshAuth(req.cookies.refreshToken);
   sendTokens(res, tokens);
   res.status(httpStatus.OK).send();
 });
 
-export const forgotPassword = catchAsync(async (req: Request, res: Response) => {
+export const forgotPasswordController = catchAsync(async (req: Request, res: Response) => {
   const resetPasswordToken = await generateResetPasswordToken(req.body.email);
   await sendResetPasswordEmail(req.body.email, resetPasswordToken);
   res.status(httpStatus.NO_CONTENT).send();

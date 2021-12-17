@@ -12,14 +12,14 @@ export const createUserController = catchAsync(async (req: Request, res: Respons
   res.status(httpStatus.CREATED).send(user);
 });
 
-export const getUsers = catchAsync(async (req: Request, res: Response) => {
+export const getUsersController = catchAsync(async (req: Request, res: Response) => {
   const filter = pick(req.query, ['name', 'role']);
   const options: IOptions = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await queryUsers(filter, options);
   res.send(result);
 });
 
-export const getUser = catchAsync(async (req: Request, res: Response) => {
+export const getUserController = catchAsync(async (req: Request, res: Response) => {
   if (typeof req.params['userId'] === 'string') {
     const user = await getUserById(new mongoose.Schema.Types.ObjectId(req.params['userId']));
     if (!user) {
@@ -29,14 +29,14 @@ export const getUser = catchAsync(async (req: Request, res: Response) => {
   }
 });
 
-export const updateUser = catchAsync(async (req: Request, res: Response) => {
+export const updateUserController = catchAsync(async (req: Request, res: Response) => {
   if (typeof req.params['userId'] === 'string') {
     const user = await updateUserById(new mongoose.Schema.Types.ObjectId(req.params['userId']), req.body);
     res.send(user);
   }
 });
 
-export const deleteUser = catchAsync(async (req: Request, res: Response) => {
+export const deleteUserController = catchAsync(async (req: Request, res: Response) => {
   if (typeof req.params['userId'] === 'string') {
     await deleteUserById(new mongoose.Schema.Types.ObjectId(req.params['userId']));
     res.status(httpStatus.NO_CONTENT).send();

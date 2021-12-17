@@ -8,36 +8,36 @@ const registerBody: Record<keyof NewRegisteredUser, any> = {
   name: Joi.string().required(),
 };
 
-export const register = {
+export const registerValidator = {
   body: Joi.object().keys(registerBody),
 };
 
-export const login = {
+export const loginValidator = {
   body: Joi.object().keys({
     email: Joi.string().required(),
     password: Joi.string().required(),
   }),
 };
 
-export const logout = {
+export const logoutValidator = {
   body: Joi.object().keys({
     refreshToken: Joi.string().required(),
   }),
 };
 
-export const refreshTokens = {
+export const refreshTokensValidator = {
   body: Joi.object().keys({
     refreshToken: Joi.string().required(),
   }),
 };
 
-export const forgotPassword = {
+export const forgotPasswordValidator = {
   body: Joi.object().keys({
     email: Joi.string().email().required(),
   }),
 };
 
-export const resetPassword = {
+export const resetPasswordValidator = {
   query: Joi.object().keys({
     token: Joi.string().required(),
   }),
@@ -46,7 +46,7 @@ export const resetPassword = {
   }),
 };
 
-export const verifyEmail = {
+export const verifyEmailValidator = {
   query: Joi.object().keys({
     token: Joi.string().required(),
   }),

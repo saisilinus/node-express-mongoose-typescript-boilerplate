@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Express } from 'express';
 import helmet from 'helmet';
 import xss from 'xss-clean';
 import ExpressMongoSanitize from 'express-mongo-sanitize';
@@ -14,7 +14,7 @@ import authLimiter from './middlewares/rateLimiter';
 import ApiError from './utils/ApiError';
 import { errorConverter, errorHandler } from './middlewares/error';
 
-const app = express();
+const app: Express = express();
 
 if (config.env !== 'test') {
   app.use(morgan.successHandler);

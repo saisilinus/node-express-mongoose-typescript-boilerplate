@@ -9,11 +9,11 @@ const createUserBody: Record<keyof NewCreatedUser, any> = {
   role: Joi.string().required().valid('user', 'admin'),
 };
 
-export const createUser = {
+export const createUserValidator = {
   body: Joi.object().keys(createUserBody),
 };
 
-export const getUsers = {
+export const getUsersValidator = {
   query: Joi.object().keys({
     name: Joi.string(),
     role: Joi.string(),
@@ -23,13 +23,13 @@ export const getUsers = {
   }),
 };
 
-export const getUser = {
+export const getUserValidator = {
   params: Joi.object().keys({
     userId: Joi.string().custom(objectId),
   }),
 };
 
-export const updateUser = {
+export const updateUserValidator = {
   params: Joi.object().keys({
     userId: Joi.required().custom(objectId),
   }),
@@ -42,7 +42,7 @@ export const updateUser = {
     .min(1),
 };
 
-export const deleteUser = {
+export const deleteUserValidator = {
   params: Joi.object().keys({
     userId: Joi.string().custom(objectId),
   }),
