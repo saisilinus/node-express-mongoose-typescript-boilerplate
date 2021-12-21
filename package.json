@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "pm2 start ecosystem.config.json --no-daemon",
-    "dev": "cross-env NODE_ENV=development nodemon src/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon --watch './**/*.ts' --exec 'ts-node' --files src/index.ts",
     "test": "jest -i --colors --verbose --detectOpenHandles",
     "test:watch": "jest -i --watchAll",
     "coverage": "jest -i --coverage",
@@ -21,7 +21,7 @@
     "docker:dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up",
     "docker:test": "docker-compose -f docker-compose.yml -f docker-compose.test.yml up",
     "prepare": "husky install",
-    "compile": "tsc --build src",
+    "compile": "tsc --build && eslint . --fix",
     "compile:watch": "tsc --build src --watch"
   },
   "keywords": [
@@ -79,6 +79,7 @@
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
     "supertest": "^6.1.6",
+    "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
   },
   "dependencies": {

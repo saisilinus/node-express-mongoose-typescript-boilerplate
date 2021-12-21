@@ -33,18 +33,14 @@ export const queryUsers = async (filter: Record<string, any>, options: IOptions)
  * @param {ObjectId} id
  * @returns {Promise<IUserDoc | null>}
  */
-export const getUserById = async (id: ObjectId): Promise<IUserDoc | null> => {
-  return User.findById(id);
-};
+export const getUserById = async (id: ObjectId): Promise<IUserDoc | null> => User.findById(id);
 
 /**
  * Get user by email
  * @param {string} email
  * @returns {Promise<IUserDoc | null>}
  */
-export const getUserByEmail = async (email: string): Promise<IUserDoc | null> => {
-  return User.findOne({ email });
-};
+export const getUserByEmail = async (email: string): Promise<IUserDoc | null> => User.findOne({ email });
 
 /**
  * Update user by id

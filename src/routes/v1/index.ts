@@ -1,8 +1,8 @@
 import express, { Router } from 'express';
-import authRoute from './Auth/auth.route.v1';
-import docsRoute from './swagger/swagger.route';
-import userRoute from './Users/user.route.v1';
-import config from './config/config';
+import authRoute from './auth.route';
+import docsRoute from './swagger.route';
+import userRoute from './user.route';
+import config from '../../config/config';
 
 const router = express.Router();
 

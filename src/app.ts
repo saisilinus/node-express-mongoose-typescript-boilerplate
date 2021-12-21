@@ -13,7 +13,7 @@ import jwtStrategy from './config/passport';
 import authLimiter from './middlewares/rateLimiter';
 import ApiError from './utils/ApiError';
 import { errorConverter, errorHandler } from './middlewares/error';
-import routes from './routes';
+import routes from './routes/v1';
 
 const app: Express = express();
 
@@ -26,7 +26,7 @@ if (config.env !== 'test') {
 app.use(helmet());
 
 // use cookie parser for jwt
-app.use(cookieParser());
+app.use(cookieParser(config.cookies.secret));
 
 // enable cors
 app.use(cors());

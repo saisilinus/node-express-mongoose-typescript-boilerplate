@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
-import validate from '../middlewares/validate';
-import auth from '../middlewares/auth';
+import validate from '../../middlewares/validate';
+import auth from '../../middlewares/auth';
 import {
   forgotPasswordValidator,
   loginValidator,
@@ -9,7 +9,7 @@ import {
   registerValidator,
   resetPasswordValidator,
   verifyEmailValidator,
-} from './auth.validation';
+} from '../../Auth/auth.validation';
 import {
   forgotPasswordController,
   loginController,
@@ -19,7 +19,7 @@ import {
   resetPasswordController,
   sendVerificationEmailController,
   verifyEmailController,
-} from './auth.controller';
+} from '../../Auth/auth.controller';
 
 const router: Router = express.Router();
 

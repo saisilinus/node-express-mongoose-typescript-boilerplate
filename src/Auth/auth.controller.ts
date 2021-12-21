@@ -24,7 +24,7 @@ export const registerController = catchAsync(async (req: Request, res: Response)
   const verifyEmailToken = await generateVerifyEmailToken(user);
   await sendSuccessfulRegistration(user.email, verifyEmailToken, user.name);
   sendTokens(res, tokens);
-  res.status(httpStatus.CREATED).send({ user });
+  res.status(httpStatus.CREATED).send({ user, tokens });
 });
 
 export const loginController = catchAsync(async (req: Request, res: Response) => {
@@ -32,7 +32,7 @@ export const loginController = catchAsync(async (req: Request, res: Response) =>
   const user = await loginUserWithEmailAndPassword(email, password);
   const tokens = await generateAuthTokens(user);
   sendTokens(res, tokens);
-  res.send({ user });
+  res.send({ user, tokens });
 });
 
 export const logoutController = catchAsync(async (req: Request, res: Response) => {

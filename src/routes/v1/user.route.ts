@@ -1,30 +1,43 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const validate_1 = __importDefault(require("../middlewares/validate"));
-const auth_1 = __importDefault(require("../middlewares/auth"));
-const user_validation_1 = require("./user.validation");
-const user_controller_1 = require("./user.controller");
-const router = express_1.default.Router();
+import express, { Router } from 'express';
+import validate from '../../middlewares/validate';
+import auth from '../../middlewares/auth';
+import {
+  createUserValidator,
+  deleteUserValidator,
+  getUsersValidator,
+  getUserValidator,
+  updateUserValidator,
+} from '../../Users/user.validation';
+import {
+  createUserController,
+  deleteUserController,
+  getUserController,
+  getUsersController,
+  updateUserController,
+} from '../../Users/user.controller';
+
+const router: Router = express.Router();
+
 router
-    .route('/')
-    .post((0, auth_1.default)('manageUsers'), (0, validate_1.default)(user_validation_1.createUserValidator), user_controller_1.createUserController)
-    .get((0, auth_1.default)('getUsers'), (0, validate_1.default)(user_validation_1.getUsersValidator), user_controller_1.getUsersController);
+  .route('/')
+  .post(auth('manageUsers'), validate(createUserValidator), createUserController)
+  .get(auth('getUsers'), validate(getUsersValidator), getUsersController);
+
 router
-    .route('/:userId')
-    .get((0, auth_1.default)('getUsers'), (0, validate_1.default)(user_validation_1.getUserValidator), user_controller_1.getUserController)
-    .patch((0, auth_1.default)('manageUsers'), (0, validate_1.default)(user_validation_1.updateUserValidator), user_controller_1.updateUserController)
-    .delete((0, auth_1.default)('manageUsers'), (0, validate_1.default)(user_validation_1.deleteUserValidator), user_controller_1.deleteUserController);
-exports.default = router;
+  .route('/:userId')
+  .get(auth('getUsers'), validate(getUserValidator), getUserController)
+  .patch(auth('manageUsers'), validate(updateUserValidator), updateUserController)
+  .delete(auth('manageUsers'), validate(deleteUserValidator), deleteUserController);
+
+export default router;
+
 /**
  * @swagger
  * tags:
  *   name: Users
  *   description: User management and retrieval
  */
+
 /**
  * @swagger
  * /users:
@@ -144,6 +157,7 @@ exports.default = router;
  *       "403":
  *         $ref: '#/components/responses/Forbidden'
  */
+
 /**
  * @swagger
  * /users/{id}:

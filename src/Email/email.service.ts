@@ -21,7 +21,13 @@ if (config.env !== 'test') {
  * @returns {Promise<void>}
  */
 export const sendEmail = async (to: string, subject: string, text: string, html: string): Promise<void> => {
-  const msg: Message = { from: config.email.from, to, subject, text, html };
+  const msg: Message = {
+    from: config.email.from,
+    to,
+    subject,
+    text,
+    html,
+  };
   await transport.sendMail(msg);
 };
 
@@ -101,7 +107,7 @@ export const sendSuccessfulRegistration = async (to: string, token: string, name
 export const sendAccountCreated = async (to: string, name: string): Promise<void> => {
   const subject = 'Account Created Successfully';
   // replace this url with the link to the email verification page of your front-end app
-  const loginUrl = `http://link-to-app/auth/login`;
+  const loginUrl = 'http://link-to-app/auth/login';
   const text = `Hi ${name},
   Congratulations! Your account has been created successfully. 
   You can now login at: ${loginUrl}
