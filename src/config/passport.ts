@@ -1,9 +1,9 @@
 import { Request } from 'express';
 import { Strategy as JwtStrategy } from 'passport-jwt';
-import tokenTypes from '../Tokens/token.types';
+import tokenTypes from '../components/token/token.types';
 import config from './config';
-import User from '../Users/user.model';
-import { IPayload } from '../Tokens/token.interfaces';
+import User from '../components/user/user.model';
+import { IPayload } from '../components/token/token.interfaces';
 
 const cookieExtractor = function (req: Request): string {
   let token = null;
