@@ -1,9 +1,9 @@
 import { Schema, model, ObjectId } from 'mongoose';
 import validator from 'validator';
 import bcrypt from 'bcryptjs';
-import toJSON from '../plugins/toJSON';
-import paginate from '../plugins/paginate';
-import { roles } from '../config/roles';
+import toJSON from '../toJSON/toJSON.plugin';
+import paginate from '../paginate/paginate.plugin';
+import { roles } from '../../config/roles';
 import { IUserDoc, IUserModel } from './user.interfaces';
 
 const userSchema = new Schema<IUserDoc, IUserModel>(
