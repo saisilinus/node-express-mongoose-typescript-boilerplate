@@ -1,0 +1,49 @@
+import Joi from 'joi';
+import { password, objectId } from '../utils/custom.validation';
+import { NewCreatedUser } from './user.interfaces';
+
+const createUserBody: Record<keyof NewCreatedUser, any> = {
+  email: Joi.string().required().email(),
+  password: Joi.string().required().custom(password),
+  name: Joi.string().required(),
+  role: Joi.string().required().valid('user', 'admin'),
+};
+
+export const createUserValidator = {
+  body: Joi.object().keys(createUserBody),
+};
+
+export const getUsersValidator = {
+  query: Joi.object().keys({
+    name: Joi.string(),
+    role: Joi.string(),
+    sortBy: Joi.string(),
+    limit: Joi.number().integer(),
+    page: Joi.number().integer(),
+  }),
+};
+
+export const getUserValidator = {
+  params: Joi.object().keys({
+    userId: Joi.string().custom(objectId),
+  }),
+};
+
+export const updateUserValidator = {
+  params: Joi.object().keys({
+    userId: Joi.required().custom(objectId),
+  }),
+  body: Joi.object()
+    .keys({
+      email: Joi.string().email(),
+      password: Joi.string().custom(password),
+      name: Joi.string(),
+    })
+    .min(1),
+};
+
+export const deleteUserValidator = {
+  params: Joi.object().keys({
+    userId: Joi.string().custom(objectId),
+  }),
+};

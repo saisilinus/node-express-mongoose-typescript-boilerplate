@@ -1,21 +1,14 @@
 import { Request } from 'express';
 import { Strategy as JwtStrategy } from 'passport-jwt';
-import tokenTypes from './tokens';
+import tokenTypes from '../Tokens/token.types';
 import config from './config';
-
-const { User } = require('../models');
-
-interface Payload {
-  sub: string;
-  iat: number;
-  exp: number;
-  type: string;
-}
+import User from '../Users/user.model';
+import { IPayload } from '../Tokens/token.interfaces';
 
 const cookieExtractor = function (req: Request): string {
   let token = null;
   if (req && req.cookies) {
-    token = req.cookies.jwt;
+    token = req.cookies.accessToken;
   }
   return token;
 };
@@ -25,7 +18,7 @@ const jwtOptions = {
   jwtFromRequest: cookieExtractor,
 };
 
-const jwtVerify = async (payload: Payload, done: any) => {
+const jwtVerify = async (payload: IPayload, done: any) => {
   try {
     if (payload.type !== tokenTypes.ACCESS) {
       throw new Error('Invalid token type');

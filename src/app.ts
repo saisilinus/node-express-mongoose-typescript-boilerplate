@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Express } from 'express';
 import helmet from 'helmet';
 import xss from 'xss-clean';
 import ExpressMongoSanitize from 'express-mongo-sanitize';
@@ -6,22 +6,27 @@ import compression from 'compression';
 import cors from 'cors';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
+import httpStatus from 'http-status';
 import config from './config/config';
-import { successHandler, errorHandler } from './config/morgan';
+import morgan from './config/morgan';
 import jwtStrategy from './config/passport';
+import authLimiter from './middlewares/rateLimiter';
+import ApiError from './utils/ApiError';
+import { errorConverter, errorHandler } from './middlewares/error';
+import routes from './routes/v1';
 
-const app = express();
+const app: Express = express();
 
 if (config.env !== 'test') {
-  app.use(successHandler);
-  app.use(errorHandler);
+  app.use(morgan.successHandler);
+  app.use(morgan.errorHandler);
 }
 
 // set security HTTP headers
 app.use(helmet());
 
 // use cookie parser for jwt
-app.use(cookieParser());
+app.use(cookieParser(config.cookies.secret));
 
 // enable cors
 app.use(cors());
@@ -43,5 +48,24 @@ app.use(compression());
 // jwt authentication
 app.use(passport.initialize());
 passport.use('jwt', jwtStrategy);
+
+// limit repeated failed requests to auth endpoints
+if (config.env === 'production') {
+  app.use('/v1/auth', authLimiter);
+}
+
+// v1 api routes
+app.use('/v1', routes);
+
+// send back a 404 error for any unknown api request
+app.use((_req, _res, next) => {
+  next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
+});
+
+// convert error to ApiError, if needed
+app.use(errorConverter);
+
+// handle error
+app.use(errorHandler);
 
 export default app;
