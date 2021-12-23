@@ -1,11 +1,11 @@
 import httpStatus from 'http-status';
-import Token from '../Tokens/token.model';
-import ApiError from '../utils/ApiError';
-import tokenTypes from '../Tokens/token.types';
-import { getUserByEmail, getUserById, updateUserById } from '../Users/user.service';
-import { IUserDoc } from '../Users/user.interfaces';
-import { generateAuthTokens, verifyToken } from '../Tokens/token.service';
-import { AccessAndRefreshTokens } from '../Tokens/token.interfaces';
+import Token from '../token/token.model';
+import ApiError from '../../utils/ApiError';
+import tokenTypes from '../token/token.types';
+import { getUserByEmail, getUserById, updateUserById } from '../user/user.service';
+import { IUserDoc } from '../user/user.interfaces';
+import { generateAuthTokens, verifyToken } from '../token/token.service';
+import { AccessAndRefreshTokens } from '../token/token.interfaces';
 
 /**
  * Login with username and password

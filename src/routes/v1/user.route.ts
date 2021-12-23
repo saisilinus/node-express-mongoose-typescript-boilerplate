@@ -1,20 +1,20 @@
 import express, { Router } from 'express';
-import validate from '../../middlewares/validate';
-import auth from '../../middlewares/auth';
+import validate from '../../components/validate/validate.middleware';
+import auth from '../../components/auth/auth.middleware';
 import {
   createUserValidator,
   deleteUserValidator,
   getUsersValidator,
   getUserValidator,
   updateUserValidator,
-} from '../../Users/user.validation';
+} from '../../components/user/user.validation';
 import {
   createUserController,
   deleteUserController,
   getUserController,
   getUsersController,
   updateUserController,
-} from '../../Users/user.controller';
+} from '../../components/user/user.controller';
 
 const router: Router = express.Router();
 

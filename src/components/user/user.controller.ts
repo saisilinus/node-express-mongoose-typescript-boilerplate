@@ -1,11 +1,11 @@
 import httpStatus from 'http-status';
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
-import catchAsync from '../utils/catchAsync';
-import ApiError from '../utils/ApiError';
-import pick from '../utils/pick';
+import catchAsync from '../../utils/catchAsync';
+import ApiError from '../../utils/ApiError';
+import pick from '../../utils/pick';
 import { createUser, queryUsers, getUserById, updateUserById, deleteUserById } from './user.service';
-import { IOptions } from '../plugins/paginate';
+import { IOptions } from '../paginate/paginate.plugin';
 
 export const createUserController = catchAsync(async (req: Request, res: Response) => {
   const user = await createUser(req.body);

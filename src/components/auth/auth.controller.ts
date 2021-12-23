@@ -1,17 +1,17 @@
 import httpStatus from 'http-status';
 import { Request, Response } from 'express';
-import catchAsync from '../utils/catchAsync';
-import { createUser } from '../Users/user.service';
-import { generateAuthTokens, generateResetPasswordToken, generateVerifyEmailToken } from '../Tokens/token.service';
+import catchAsync from '../../utils/catchAsync';
+import { createUser } from '../user/user.service';
+import { generateAuthTokens, generateResetPasswordToken, generateVerifyEmailToken } from '../token/token.service';
 import { loginUserWithEmailAndPassword, logout, refreshAuth, resetPassword, verifyEmail } from './auth.service';
 import {
   sendAccountCreated,
   sendResetPasswordEmail,
   sendSuccessfulRegistration,
   sendVerificationEmail,
-} from '../Email/email.service';
-import config from '../config/config';
-import { AccessAndRefreshTokens } from '../Tokens/token.interfaces';
+} from '../email/email.service';
+import config from '../../config/config';
+import { AccessAndRefreshTokens } from '../token/token.interfaces';
 
 export const sendTokens = (res: Response, tokens: AccessAndRefreshTokens) => {
   res.cookie('accessToken', tokens.access, config.jwt.cookieOptions);

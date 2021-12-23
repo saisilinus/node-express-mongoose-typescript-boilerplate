@@ -5,7 +5,7 @@ import { Document } from 'mongoose';
  * A mongoose schema plugin which allows user to hide fields dynamically using a hide option
  */
 
-const inlineToJSON = (schema: any) => {
+const hideToJSON = (schema: any) => {
   schema.options.toJSON = {};
   schema.options.toJSON.hide = '';
   schema.options.toJSON.transform = function (_doc: Document, ret: any, options: Record<string, any>) {
@@ -23,4 +23,4 @@ const inlineToJSON = (schema: any) => {
   };
 };
 
-export default inlineToJSON;
+export default hideToJSON;
