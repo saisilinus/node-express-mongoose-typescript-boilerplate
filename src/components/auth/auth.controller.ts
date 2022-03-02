@@ -23,7 +23,6 @@ export const registerController = catchAsync(async (req: Request, res: Response)
   const tokens = await generateAuthTokens(user);
   const verifyEmailToken = await generateVerifyEmailToken(user);
   await sendSuccessfulRegistration(user.email, verifyEmailToken, user.name);
-  sendTokens(res, tokens);
   res.status(httpStatus.CREATED).send({ user, tokens });
 });
 
@@ -31,21 +30,17 @@ export const loginController = catchAsync(async (req: Request, res: Response) =>
   const { email, password } = req.body;
   const user = await loginUserWithEmailAndPassword(email, password);
   const tokens = await generateAuthTokens(user);
-  sendTokens(res, tokens);
   res.send({ user, tokens });
 });
 
 export const logoutController = catchAsync(async (req: Request, res: Response) => {
-  await logout(req.cookies.refreshToken);
-  res.clearCookie('accessToken');
-  res.clearCookie('refreshToken');
+  await logout(req.body.refreshToken);
   res.status(httpStatus.NO_CONTENT).send();
 });
 
 export const refreshTokensController = catchAsync(async (req: Request, res: Response) => {
-  const tokens = await refreshAuth(req.cookies.refreshToken);
-  sendTokens(res, tokens);
-  res.status(httpStatus.OK).send();
+  const tokens = await refreshAuth(req.body.refreshToken);
+  res.send({ ...tokens });
 });
 
 export const forgotPasswordController = catchAsync(async (req: Request, res: Response) => {
@@ -55,8 +50,7 @@ export const forgotPasswordController = catchAsync(async (req: Request, res: Res
 });
 
 export const resetPasswordController = catchAsync(async (req: Request, res: Response) => {
-  await resetPassword(req.cookies.resetPasswordToken, req.body.password);
-  res.clearCookie('resetPasswordToken');
+  await resetPassword(req.query['token'], req.body.password);
   res.status(httpStatus.NO_CONTENT).send();
 });
 
@@ -67,10 +61,9 @@ export const sendVerificationEmailController = catchAsync(async (req: Request, r
 });
 
 export const verifyEmailController = catchAsync(async (req: Request, res: Response) => {
-  const user = await verifyEmail(req.cookies.verifyEmailToken);
+  const user = await verifyEmail(req.query['token']);
   if (user) {
     await sendAccountCreated(user.email, user.name);
   }
-  res.clearCookie('verifyEmailToken');
   res.status(httpStatus.NO_CONTENT).send();
 });
