@@ -10,9 +10,9 @@ import httpStatus from 'http-status';
 import config from './config/config';
 import morgan from './config/morgan';
 import jwtStrategy from './config/passport';
-import authLimiter from './middlewares/rateLimiter';
-import ApiError from './utils/ApiError';
-import { errorConverter, errorHandler } from './middlewares/error';
+import authLimiter from './utils/rateLimiter';
+import ApiError from './components/errors/ApiError';
+import { errorConverter, errorHandler } from './components/errors/error';
 import routes from './routes/v1';
 
 const app: Express = express();

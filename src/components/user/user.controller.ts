@@ -2,7 +2,7 @@ import httpStatus from 'http-status';
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import catchAsync from '../../utils/catchAsync';
-import ApiError from '../../utils/ApiError';
+import ApiError from '../errors/ApiError';
 import pick from '../../utils/pick';
 import { createUser, queryUsers, getUserById, updateUserById, deleteUserById } from './user.service';
 import { IOptions } from '../paginate/paginate.plugin';

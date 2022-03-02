@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
 import { ObjectId } from 'mongoose';
 import User from './user.model';
-import ApiError from '../../utils/ApiError';
+import ApiError from '../errors/ApiError';
 import { IOptions, QueryResult } from '../paginate/paginate.plugin';
 import { NewCreatedUser, UpdateUserBody, IUserDoc } from './user.interfaces';
 

@@ -1,6 +1,6 @@
 import httpStatus from 'http-status';
 import Token from '../token/token.model';
-import ApiError from '../../utils/ApiError';
+import ApiError from '../errors/ApiError';
 import tokenTypes from '../token/token.types';
 import { getUserByEmail, getUserById, updateUserById } from '../user/user.service';
 import { IUserDoc } from '../user/user.interfaces';
