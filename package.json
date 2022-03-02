@@ -48,6 +48,7 @@
   ],
   "devDependencies": {
     "@faker-js/faker": "^6.0.0-alpha.7",
+    "@jest/globals": "^27.5.1",
     "@types/bcryptjs": "^2.4.2",
     "@types/compression": "^1.7.2",
     "@types/cookie-parser": "^1.4.2",
