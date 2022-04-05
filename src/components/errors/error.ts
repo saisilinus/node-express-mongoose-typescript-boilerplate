@@ -36,5 +36,5 @@ export const errorHandler = (err: ApiError, _req: Request, res: Response, _next:
     logger.error(err);
   }
 
-  res.status(statusCode).json(response);
+  res.status(statusCode).send(response);
 };
