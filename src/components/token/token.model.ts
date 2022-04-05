@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import tokenTypes from './token.types';
 import toJSON from '../toJSON/toJSON.plugin';
 import { ITokenDoc, ITokenModel } from './token.interfaces';
@@ -11,7 +11,7 @@ const tokenSchema = new Schema<ITokenDoc, ITokenModel>(
       index: true,
     },
     user: {
-      type: mongoose.SchemaTypes.ObjectId,
+      type: String,
       ref: 'User',
       required: true,
     },

@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import moment, { Moment } from 'moment';
-import mongoose, { ObjectId } from 'mongoose';
+import mongoose from 'mongoose';
 import httpStatus from 'http-status';
 import config from '../../config/config';
 import Token from './token.model';
@@ -12,14 +12,14 @@ import { getUserByEmail } from '../user/user.service';
 
 /**
  * Generate token
- * @param {ObjectId} userId
+ * @param {mongoose.Types.ObjectId} userId
  * @param {Moment} expires
  * @param {string} type
  * @param {string} [secret]
  * @returns {string}
  */
 export const generateToken = (
-  userId: ObjectId,
+  userId: mongoose.Types.ObjectId,
   expires: Moment,
   type: string,
   secret: string = config.jwt.secret
@@ -36,7 +36,7 @@ export const generateToken = (
 /**
  * Save a token
  * @param {string} token
- * @param {ObjectId} userId
+ * @param {mongoose.Types.ObjectId} userId
  * @param {Moment} expires
  * @param {string} type
  * @param {boolean} [blacklisted]
@@ -44,7 +44,7 @@ export const generateToken = (
  */
 export const saveToken = async (
   token: string,
-  userId: ObjectId,
+  userId: mongoose.Types.ObjectId,
   expires: Moment,
   type: string,
   blacklisted: boolean = false
@@ -67,15 +67,15 @@ export const saveToken = async (
  */
 export const verifyToken = async (token: string, type: string): Promise<ITokenDoc> => {
   const payload = jwt.verify(token, config.jwt.secret);
-  let tokenDoc;
-  if (typeof payload.sub === 'string') {
-    tokenDoc = await Token.findOne({
-      token,
-      type,
-      user: new mongoose.Schema.Types.ObjectId(payload.sub),
-      blacklisted: false,
-    });
+  if (typeof payload.sub !== 'string') {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'bad user');
   }
+  const tokenDoc = await Token.findOne({
+    token,
+    type,
+    user: payload.sub,
+    blacklisted: false,
+  });
   if (!tokenDoc) {
     throw new Error('Token not found');
   }

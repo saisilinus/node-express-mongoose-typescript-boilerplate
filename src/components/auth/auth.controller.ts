@@ -1,15 +1,10 @@
 import httpStatus from 'http-status';
 import { Request, Response } from 'express';
 import catchAsync from '../../utils/catchAsync';
-import { createUser } from '../user/user.service';
+import { registerUser } from '../user/user.service';
 import { generateAuthTokens, generateResetPasswordToken, generateVerifyEmailToken } from '../token/token.service';
 import { loginUserWithEmailAndPassword, logout, refreshAuth, resetPassword, verifyEmail } from './auth.service';
-import {
-  sendAccountCreated,
-  sendResetPasswordEmail,
-  sendSuccessfulRegistration,
-  sendVerificationEmail,
-} from '../email/email.service';
+import { sendAccountCreated, sendResetPasswordEmail, sendVerificationEmail } from '../email/email.service';
 import config from '../../config/config';
 import { AccessAndRefreshTokens } from '../token/token.interfaces';
 
@@ -19,10 +14,8 @@ export const sendTokens = (res: Response, tokens: AccessAndRefreshTokens) => {
 };
 
 export const registerController = catchAsync(async (req: Request, res: Response) => {
-  const user = await createUser(req.body);
+  const user = await registerUser(req.body);
   const tokens = await generateAuthTokens(user);
-  const verifyEmailToken = await generateVerifyEmailToken(user);
-  await sendSuccessfulRegistration(user.email, verifyEmailToken, user.name);
   res.status(httpStatus.CREATED).send({ user, tokens });
 });
 

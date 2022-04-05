@@ -1,9 +1,9 @@
-import { ObjectId, Document, Model, LeanDocument } from 'mongoose';
+import { Document, Model, LeanDocument } from 'mongoose';
 import { JwtPayload } from 'jsonwebtoken';
 
 export interface IToken {
   token: string;
-  user: ObjectId;
+  user: string;
   type: string;
   expires: Date;
   blacklisted: boolean;

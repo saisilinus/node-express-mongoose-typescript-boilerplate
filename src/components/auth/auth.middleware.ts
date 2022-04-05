@@ -24,7 +24,7 @@ const verifyCallback =
     resolve();
   };
 
-const auth =
+const authMiddleware =
   (...requiredRights: string[]) =>
   async (req: Request, res: Response, next: NextFunction) =>
     new Promise<void>((resolve, reject) => {
@@ -33,4 +33,4 @@ const auth =
       .then(() => next())
       .catch((err) => next(err));
 
-export default auth;
+export default authMiddleware;

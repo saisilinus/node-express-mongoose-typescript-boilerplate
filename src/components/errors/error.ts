@@ -16,13 +16,12 @@ export const errorConverter = (err: any, _req: Request, _res: Response, next: Ne
   next(error);
 };
 
-// eslint-disable-next-line no-unused-vars
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const errorHandler = (err: any, _req: Request, res: Response) => {
+export const errorHandler = (err: ApiError, _req: Request, res: Response, _next: NextFunction) => {
   let { statusCode, message } = err;
   if (config.env === 'production' && !err.isOperational) {
     statusCode = httpStatus.INTERNAL_SERVER_ERROR;
-    message = `${httpStatus[httpStatus.INTERNAL_SERVER_ERROR]}`;
+    message = 'Internal Server Error';
   }
 
   res.locals['errorMessage'] = err.message;
@@ -37,5 +36,5 @@ export const errorHandler = (err: any, _req: Request, res: Response) => {
     logger.error(err);
   }
 
-  res.status(statusCode).send(response);
+  res.status(statusCode).json(response);
 };

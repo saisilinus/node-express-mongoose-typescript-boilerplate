@@ -3,10 +3,10 @@ import httpStatus from 'http-status';
 import httpMocks from 'node-mocks-http';
 import { jest } from '@jest/globals';
 import winston from 'winston';
-import { errorConverter, errorHandler } from '../error';
-import ApiError from '../ApiError';
-import config from '../../../config/config';
-import logger from '../../../config/logger';
+import { errorConverter, errorHandler } from './error';
+import ApiError from './ApiError';
+import config from '../../config/config';
+import logger from '../../config/logger';
 
 describe('Error middlewares', () => {
   describe('Error converter', () => {
@@ -110,9 +110,10 @@ describe('Error middlewares', () => {
     test('should send proper error response and put the error message in res.locals', () => {
       const error = new ApiError(httpStatus.BAD_REQUEST, 'Any error');
       const res = httpMocks.createResponse();
+      const next = jest.fn();
       const sendSpy = jest.spyOn(res, 'send');
 
-      errorHandler(error, httpMocks.createRequest(), res);
+      errorHandler(error, httpMocks.createRequest(), res, next);
 
       expect(sendSpy).toHaveBeenCalledWith(expect.objectContaining({ code: error.statusCode, message: error.message }));
       expect(res.locals['errorMessage']).toBe(error.message);
@@ -122,9 +123,10 @@ describe('Error middlewares', () => {
       config.env = 'development';
       const error = new ApiError(httpStatus.BAD_REQUEST, 'Any error');
       const res = httpMocks.createResponse();
+      const next = jest.fn();
       const sendSpy = jest.spyOn(res, 'send');
 
-      errorHandler(error, httpMocks.createRequest(), res);
+      errorHandler(error, httpMocks.createRequest(), res, next);
 
       expect(sendSpy).toHaveBeenCalledWith(
         expect.objectContaining({ code: error.statusCode, message: error.message, stack: error.stack })
@@ -136,9 +138,10 @@ describe('Error middlewares', () => {
       config.env = 'production';
       const error = new ApiError(httpStatus.BAD_REQUEST, 'Any error', false);
       const res = httpMocks.createResponse();
+      const next = jest.fn();
       const sendSpy = jest.spyOn(res, 'send');
 
-      errorHandler(error, httpMocks.createRequest(), res);
+      errorHandler(error, httpMocks.createRequest(), res, next);
 
       expect(sendSpy).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -154,9 +157,10 @@ describe('Error middlewares', () => {
       config.env = 'production';
       const error = new ApiError(httpStatus.BAD_REQUEST, 'Any error');
       const res = httpMocks.createResponse();
+      const next = jest.fn();
       const sendSpy = jest.spyOn(res, 'send');
 
-      errorHandler(error, httpMocks.createRequest(), res);
+      errorHandler(error, httpMocks.createRequest(), res, next);
 
       expect(sendSpy).toHaveBeenCalledWith(
         expect.objectContaining({

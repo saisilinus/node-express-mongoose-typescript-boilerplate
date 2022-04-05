@@ -1,4 +1,5 @@
 import httpStatus from 'http-status';
+import mongoose from 'mongoose';
 import Token from '../token/token.model';
 import ApiError from '../errors/ApiError';
 import tokenTypes from '../token/token.types';
@@ -42,7 +43,7 @@ export const logout = async (refreshToken: string): Promise<void> => {
 export const refreshAuth = async (refreshToken: string): Promise<AccessAndRefreshTokens> => {
   try {
     const refreshTokenDoc = await verifyToken(refreshToken, tokenTypes.REFRESH);
-    const user = await getUserById(refreshTokenDoc.user);
+    const user = await getUserById(new mongoose.Types.ObjectId(refreshTokenDoc.user));
     if (!user) {
       throw new Error();
     }
@@ -62,7 +63,7 @@ export const refreshAuth = async (refreshToken: string): Promise<AccessAndRefres
 export const resetPassword = async (resetPasswordToken: any, newPassword: string): Promise<void> => {
   try {
     const resetPasswordTokenDoc = await verifyToken(resetPasswordToken, tokenTypes.RESET_PASSWORD);
-    const user = await getUserById(resetPasswordTokenDoc.user);
+    const user = await getUserById(new mongoose.Types.ObjectId(resetPasswordTokenDoc.user));
     if (!user) {
       throw new Error();
     }
@@ -81,7 +82,7 @@ export const resetPassword = async (resetPasswordToken: any, newPassword: string
 export const verifyEmail = async (verifyEmailToken: any): Promise<IUserDoc | null> => {
   try {
     const verifyEmailTokenDoc = await verifyToken(verifyEmailToken, tokenTypes.VERIFY_EMAIL);
-    const user = await getUserById(verifyEmailTokenDoc.user);
+    const user = await getUserById(new mongoose.Types.ObjectId(verifyEmailTokenDoc.user));
     if (!user) {
       throw new Error();
     }
