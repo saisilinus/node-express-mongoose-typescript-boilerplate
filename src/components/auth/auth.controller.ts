@@ -4,7 +4,7 @@ import catchAsync from '../../utils/catchAsync';
 import { registerUser } from '../user/user.service';
 import { generateAuthTokens, generateResetPasswordToken, generateVerifyEmailToken } from '../token/token.service';
 import { loginUserWithEmailAndPassword, logout, refreshAuth, resetPassword, verifyEmail } from './auth.service';
-import { sendAccountCreated, sendResetPasswordEmail, sendVerificationEmail } from '../email/email.service';
+import { sendResetPasswordEmail, sendVerificationEmail } from '../email/email.service';
 import config from '../../config/config';
 import { AccessAndRefreshTokens } from '../token/token.interfaces';
 
@@ -54,9 +54,6 @@ export const sendVerificationEmailController = catchAsync(async (req: Request, r
 });
 
 export const verifyEmailController = catchAsync(async (req: Request, res: Response) => {
-  const user = await verifyEmail(req.query['token']);
-  if (user) {
-    await sendAccountCreated(user.email, user.name);
-  }
+  await verifyEmail(req.query['token']);
   res.status(httpStatus.NO_CONTENT).send();
 });
