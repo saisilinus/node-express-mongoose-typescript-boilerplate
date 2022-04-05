@@ -236,37 +236,6 @@ describe('Auth routes', () => {
     });
   });
 
-  describe('POST /v1/auth/forgot-password', () => {
-    // beforeEach(() => {
-    //   jest.spyOn(emailService.transport, 'sendMail').mockResolvedValue();
-    // });
-
-    // eslint-disable-next-line jest/no-commented-out-tests
-    // test('should return 204 and send reset password email to the user', async () => {
-    //   await insertUsers([userOne]);
-
-    //   // TODO: this will fail when using es6 modules because emailService is not an object anymore as it would be from require
-    //   const sendResetPasswordEmailSpy = jest.spyOn(emailService, 'sendResetPasswordEmail');
-
-    //   await request(app).post('/v1/auth/forgot-password').send({ email: userOne.email }).expect(httpStatus.NO_CONTENT);
-
-    //   expect(sendResetPasswordEmailSpy).toHaveBeenCalledWith(userOne.email, expect.any(String));
-    //   const resetPasswordToken = sendResetPasswordEmailSpy.mock.calls[0][1];
-    //   const dbResetPasswordTokenDoc = await Token.findOne({ token: resetPasswordToken, user: userOne._id });
-    //   expect(dbResetPasswordTokenDoc).toBeDefined();
-    // });
-
-    test('should return 400 if email is missing', async () => {
-      await insertUsers([userOne]);
-
-      await request(app).post('/v1/auth/forgot-password').send().expect(httpStatus.BAD_REQUEST);
-    });
-
-    test('should return 404 if email does not belong to any user', async () => {
-      await request(app).post('/v1/auth/forgot-password').send({ email: userOne.email }).expect(httpStatus.NOT_FOUND);
-    });
-  });
-
   describe('POST /v1/auth/reset-password', () => {
     test('should return 204 and reset the password', async () => {
       await insertUsers([userOne]);
@@ -379,12 +348,6 @@ describe('Auth routes', () => {
       const dbUser = await User.findById(userOne._id);
 
       expect(dbUser?.isEmailVerified).toBe(true);
-
-      // const dbVerifyEmailToken = await Token.countDocuments({
-      //   user: userOne._id,
-      //   type: tokenTypes.VERIFY_EMAIL,
-      // });
-      // expect(dbVerifyEmailToken).toBe(0);
     });
 
     test('should return 400 if verify email token is missing', async () => {
@@ -551,17 +514,4 @@ describe('Auth middleware', () => {
 
     expect(next).toHaveBeenCalledWith();
   });
-
-  // test('should call next with no errors if user has required rights', async () => {
-  //   await insertUsers([admin]);
-  //   const req = httpMocks.createRequest({
-  //     headers: { Authorization: `Bearer ${adminAccessToken}` },
-  //     params: { userId: userOne._id.toHexString() },
-  //   });
-  //   const next = jest.fn();
-
-  //   await authMiddleware,(...roleRights.get('admin'))(req, httpMocks.createResponse(), next);
-
-  //   expect(next).toHaveBeenCalledWith();
-  // });
 });
