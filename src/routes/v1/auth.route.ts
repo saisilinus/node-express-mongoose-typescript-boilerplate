@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
-import validate from '../../components/validate/validate.middleware';
-import auth from '../../components/auth/auth.middleware';
+import validate from '@/modules/validate/validate.middleware';
+import auth from '@/modules/auth/auth.middleware';
 import {
   forgotPasswordValidator,
   loginValidator,
@@ -9,7 +9,7 @@ import {
   registerValidator,
   resetPasswordValidator,
   verifyEmailValidator,
-} from '../../components/auth/auth.validation';
+} from '../../modules/auth/auth.validation';
 import {
   forgotPasswordController,
   loginController,
@@ -19,7 +19,7 @@ import {
   resetPasswordController,
   sendVerificationEmailController,
   verifyEmailController,
-} from '../../components/auth/auth.controller';
+} from '../../modules/auth/auth.controller';
 
 const router: Router = express.Router();
 

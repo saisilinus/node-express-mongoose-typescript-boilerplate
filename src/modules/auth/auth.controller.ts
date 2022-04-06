@@ -1,8 +1,12 @@
 import httpStatus from 'http-status';
 import { Request, Response } from 'express';
-import catchAsync from '../../utils/catchAsync';
+import catchAsync from '../utils/catchAsync';
 import { registerUser } from '../user/user.service';
-import { generateAuthTokens, generateResetPasswordToken, generateVerifyEmailToken } from '../token/token.service';
+import {
+  generateAuthTokens,
+  generateResetPasswordToken,
+  generateVerifyEmailToken,
+} from '../token/token.service';
 import { loginUserWithEmailAndPassword, logout, refreshAuth, resetPassword, verifyEmail } from './auth.service';
 import { sendResetPasswordEmail, sendVerificationEmail } from '../email/email.service';
 import config from '../../config/config';
