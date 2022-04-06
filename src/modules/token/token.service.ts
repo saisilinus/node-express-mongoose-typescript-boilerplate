@@ -8,7 +8,7 @@ import ApiError from '../errors/ApiError';
 import tokenTypes from './token.types';
 import { AccessAndRefreshTokens, ITokenDoc } from './token.interfaces';
 import { IUserDoc } from '../user/user.interfaces';
-import { getUserByEmail } from '../user/user.service';
+import * as userService from '@/modules/user/user.service';
 
 /**
  * Generate token
@@ -113,7 +113,7 @@ export const generateAuthTokens = async (user: IUserDoc): Promise<AccessAndRefre
  * @returns {Promise<string>}
  */
 export const generateResetPasswordToken = async (email: string): Promise<string> => {
-  const user = await getUserByEmail(email);
+  const user = await userService.getUserByEmail(email);
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, 'No users found with this email');
   }

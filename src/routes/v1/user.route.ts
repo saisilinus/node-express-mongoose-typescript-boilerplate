@@ -1,33 +1,21 @@
 import express, { Router } from 'express';
-import validate from '../../modules/validate/validate.middleware';
-import auth from '../../modules/auth/auth.middleware';
-import {
-  createUserValidator,
-  deleteUserValidator,
-  getUsersValidator,
-  getUserValidator,
-  updateUserValidator,
-} from '../../modules/user/user.validation';
-import {
-  createUserController,
-  deleteUserController,
-  getUserController,
-  getUsersController,
-  updateUserController,
-} from '../../modules/user/user.controller';
+import validate from '@/modules/validate/validate.middleware';
+import auth from '@/modules/auth/auth.middleware';
+import * as userValidation from '@/modules/user/user.validation';
+import * as userController from '@/modules/user/user.controller';
 
 const router: Router = express.Router();
 
 router
   .route('/')
-  .post(auth('manageUsers'), validate(createUserValidator), createUserController)
-  .get(auth('getUsers'), validate(getUsersValidator), getUsersController);
+  .post(auth('manageUsers'), validate(userValidation.createUser), userController.createUser)
+  .get(auth('getUsers'), validate(userValidation.getUsers), userController.getUsers);
 
 router
   .route('/:userId')
-  .get(auth('getUsers'), validate(getUserValidator), getUserController)
-  .patch(auth('manageUsers'), validate(updateUserValidator), updateUserController)
-  .delete(auth('manageUsers'), validate(deleteUserValidator), deleteUserController);
+  .get(auth('getUsers'), validate(userValidation.getUser), userController.getUser)
+  .patch(auth('manageUsers'), validate(userValidation.updateUser), userController.updateUser)
+  .delete(auth('manageUsers'), validate(userValidation.deleteUser), userController.deleteUser);
 
 export default router;
 
