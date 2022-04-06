@@ -6,7 +6,7 @@ import winston from 'winston';
 import { errorConverter, errorHandler } from './error';
 import ApiError from './ApiError';
 import config from '../../config/config';
-import logger from '../../config/logger';
+import logger from '../logger/logger';
 
 describe('Error middlewares', () => {
   describe('Error converter', () => {

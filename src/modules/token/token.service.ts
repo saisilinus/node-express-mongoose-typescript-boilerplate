@@ -8,7 +8,7 @@ import ApiError from '../errors/ApiError';
 import tokenTypes from './token.types';
 import { AccessAndRefreshTokens, ITokenDoc } from './token.interfaces';
 import { IUserDoc } from '../user/user.interfaces';
-import * as userService from '@/modules/user/user.service';
+import { userService } from '../user';
 
 /**
  * Generate token

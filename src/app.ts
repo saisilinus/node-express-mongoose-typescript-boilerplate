@@ -8,11 +8,10 @@ import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import httpStatus from 'http-status';
 import config from './config/config';
-import morgan from './config/morgan';
-import jwtStrategy from './config/passport';
-import authLimiter from './modules/utils/rateLimiter';
-import ApiError from './modules/errors/ApiError';
-import { errorConverter, errorHandler } from './modules/errors/error';
+import { morgan } from './modules/logger';
+import { jwtStrategy } from './modules/auth';
+import { authLimiter } from './modules/utils';
+import { ApiError, errorConverter, errorHandler } from './modules/errors';
 import routes from './routes/v1';
 
 const app: Express = express();
