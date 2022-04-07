@@ -24,7 +24,7 @@
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
         "ecmaVersion": 2018,
-        "project": ["./tsconfig.json", "./src/tsconfig.json"]
+        "project": ["./tsconfig.json"]
       },
       "rules": {
         "no-console": "error",

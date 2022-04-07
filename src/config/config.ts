@@ -1,8 +1,5 @@
 import Joi from 'joi';
-import path from 'path';
-import dotenv from 'dotenv';
-
-dotenv.config({ path: path.join(__dirname, '../../.env') });
+import 'dotenv/config';
 
 const envVarsSchema = Joi.object()
   .keys({
@@ -33,7 +30,7 @@ if (error) {
   throw new Error(`Config validation error: ${error.message}`);
 }
 
-export default {
+const config = {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
   mongoose: {
@@ -71,3 +68,5 @@ export default {
     from: envVars.EMAIL_FROM,
   },
 };
+
+export default config;

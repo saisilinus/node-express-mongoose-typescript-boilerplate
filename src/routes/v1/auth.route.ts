@@ -1,36 +1,17 @@
 import express, { Router } from 'express';
-import validate from '../../components/validate/validate.middleware';
-import auth from '../../components/auth/auth.middleware';
-import {
-  forgotPasswordValidator,
-  loginValidator,
-  logoutValidator,
-  refreshTokensValidator,
-  registerValidator,
-  resetPasswordValidator,
-  verifyEmailValidator,
-} from '../../components/auth/auth.validation';
-import {
-  forgotPasswordController,
-  loginController,
-  logoutController,
-  refreshTokensController,
-  registerController,
-  resetPasswordController,
-  sendVerificationEmailController,
-  verifyEmailController,
-} from '../../components/auth/auth.controller';
+import { validate } from '../../modules/validate';
+import { authValidation, authController, auth } from '../../modules/auth';
 
 const router: Router = express.Router();
 
-router.post('/register', validate(registerValidator), registerController);
-router.post('/login', validate(loginValidator), loginController);
-router.post('/logout', validate(logoutValidator), logoutController);
-router.post('/refresh-tokens', validate(refreshTokensValidator), refreshTokensController);
-router.post('/forgot-password', validate(forgotPasswordValidator), forgotPasswordController);
-router.post('/reset-password', validate(resetPasswordValidator), resetPasswordController);
-router.post('/send-verification-email', auth(), sendVerificationEmailController);
-router.post('/verify-email', validate(verifyEmailValidator), verifyEmailController);
+router.post('/register', validate(authValidation.register), authController.register);
+router.post('/login', validate(authValidation.login), authController.login);
+router.post('/logout', validate(authValidation.logout), authController.logout);
+router.post('/refresh-tokens', validate(authValidation.refreshTokens), authController.refreshTokens);
+router.post('/forgot-password', validate(authValidation.forgotPassword), authController.forgotPassword);
+router.post('/reset-password', validate(authValidation.resetPassword), authController.resetPassword);
+router.post('/send-verification-email', auth(), authController.sendVerificationEmail);
+router.post('/verify-email', validate(authValidation.verifyEmail), authController.verifyEmail);
 
 export default router;
 
@@ -272,7 +253,7 @@ export default router;
  *     description: An email will be sent to verify email.
  *     tags: [Auth]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     responses:
  *       "204":
  *         description: No content

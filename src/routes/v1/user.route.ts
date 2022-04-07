@@ -1,33 +1,20 @@
 import express, { Router } from 'express';
-import validate from '../../components/validate/validate.middleware';
-import auth from '../../components/auth/auth.middleware';
-import {
-  createUserValidator,
-  deleteUserValidator,
-  getUsersValidator,
-  getUserValidator,
-  updateUserValidator,
-} from '../../components/user/user.validation';
-import {
-  createUserController,
-  deleteUserController,
-  getUserController,
-  getUsersController,
-  updateUserController,
-} from '../../components/user/user.controller';
+import { validate } from '../../modules/validate';
+import { auth } from '../../modules/auth';
+import { userController, userValidation } from '../../modules/user';
 
 const router: Router = express.Router();
 
 router
   .route('/')
-  .post(auth('manageUsers'), validate(createUserValidator), createUserController)
-  .get(auth('getUsers'), validate(getUsersValidator), getUsersController);
+  .post(auth('manageUsers'), validate(userValidation.createUser), userController.createUser)
+  .get(auth('getUsers'), validate(userValidation.getUsers), userController.getUsers);
 
 router
   .route('/:userId')
-  .get(auth('getUsers'), validate(getUserValidator), getUserController)
-  .patch(auth('manageUsers'), validate(updateUserValidator), updateUserController)
-  .delete(auth('manageUsers'), validate(deleteUserValidator), deleteUserController);
+  .get(auth('getUsers'), validate(userValidation.getUser), userController.getUser)
+  .patch(auth('manageUsers'), validate(userValidation.updateUser), userController.updateUser)
+  .delete(auth('manageUsers'), validate(userValidation.deleteUser), userController.deleteUser);
 
 export default router;
 
@@ -46,7 +33,7 @@ export default router;
  *     description: Only admins can create other users.
  *     tags: [Users]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -97,7 +84,7 @@ export default router;
  *     description: Only admins can retrieve all users.
  *     tags: [Users]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: name
@@ -166,7 +153,7 @@ export default router;
  *     description: Logged in users can fetch only their own user information. Only admins can fetch other users.
  *     tags: [Users]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -193,7 +180,7 @@ export default router;
  *     description: Logged in users can only update their own information. Only admins can update other users.
  *     tags: [Users]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -244,7 +231,7 @@ export default router;
  *     description: Logged in users can delete only themselves. Only admins can delete other users.
  *     tags: [Users]
  *     security:
- *       - cookieAuth: []
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
