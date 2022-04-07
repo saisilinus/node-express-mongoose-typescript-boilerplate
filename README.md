@@ -27,6 +27,8 @@ cp .env.example .env
 
 - [Features](#features)
 - [Commands](#commands)
+- [Making Changes](#making-changes)
+- [Linting Errors After Compiling](#linting-errors-after-compiling)
 - [Environment Variables](#environment-variables)
 - [Project Structure](#project-structure)
 - [API Documentation](#api-documentation)
@@ -36,7 +38,13 @@ cp .env.example .env
 - [Authorization](#authorization)
 - [Logging](#logging)
 - [Custom Mongoose Plugins](#custom-mongoose-plugins)
+  - [To JSON Plugin](#tojson)
+  - [Hide to JSON Plugin](#hidetojson)
+  - [Paginate Plugin](#paginate)
 - [Linting](#linting)
+- [Contributing](#contributing)
+- [Inspirations](#inspirations)
+- [License](#license)
 
 ## Features
 
@@ -76,6 +84,18 @@ Running in production:
 
 ```bash
 yarn start
+```
+
+Compiling to JS from TS
+
+```bash
+yarn compile
+```
+
+Compiling to JS from TS in watch mode
+
+```bash
+yarn compile:watch
 ```
 
 Testing:
@@ -120,6 +140,24 @@ yarn prettier
 yarn prettier:fix
 ```
 
+## Making Changes
+
+Add your changes to TypeScript(.ts) files which are in the src folder. 
+Compile your TS files to JS by running `yarn compile`
+
+```bash
+yarn compile
+```
+
+Manually fix remaining linting errors in the JS files
+
+## Linting Errors After Compiling
+
+After compiling, you are likely to get linting errors since some were disabled through comments in TypeScript files. Currently, the following files get linting errors after running `yarn compile`:
+  - dist/modules/errors/error.js: fix -> `// eslint-disable-next-line no-unused-vars`
+  - dist/modules/toJSON/hideToJSON.plugin.js: fix -> `/* eslint-disable no-param-reassign */`
+  - dist/modules/toJSON/toJSON.plugin.js: fix -> `/* eslint-disable no-param-reassign */`
+
 ## Environment Variables
 
 The environment variables can be found and modified in the `.env` file. They come with these default values:
@@ -151,218 +189,26 @@ EMAIL_FROM=support@yourapp.com
 ## Project Structure
 
 ```
-├── dist
-│   ├── app.js
-│   ├── app.js.map
-│   ├── config
-│   │   ├── config.js
-│   │   ├── config.js.map
-│   │   ├── roles.js
-│   │   └── roles.js.map
-│   ├── index.js
-│   ├── index.js.map
-│   ├── modules
-│   │   ├── auth
-│   │   │   ├── auth.controller.js
-│   │   │   ├── auth.controller.js.map
-│   │   │   ├── auth.middleware.js
-│   │   │   ├── auth.middleware.js.map
-│   │   │   ├── auth.service.js
-│   │   │   ├── auth.service.js.map
-│   │   │   ├── auth.test.js
-│   │   │   ├── auth.test.js.map
-│   │   │   ├── auth.validation.js
-│   │   │   ├── auth.validation.js.map
-│   │   │   ├── index.js
-│   │   │   ├── index.js.map
-│   │   │   ├── passport.js
-│   │   │   └── passport.js.map
-│   │   ├── email
-│   │   │   ├── email.interfaces.js
-│   │   │   ├── email.interfaces.js.map
-│   │   │   ├── email.service.js
-│   │   │   ├── email.service.js.map
-│   │   │   ├── index.js
-│   │   │   └── index.js.map
-│   │   ├── errors
-│   │   │   ├── ApiError.js
-│   │   │   ├── ApiError.js.map
-│   │   │   ├── error.js
-│   │   │   ├── error.js.map
-│   │   │   ├── error.test.js
-│   │   │   ├── error.test.js.map
-│   │   │   ├── index.js
-│   │   │   └── index.js.map
-│   │   ├── jest
-│   │   │   ├── setupTestDB.js
-│   │   │   └── setupTestDB.js.map
-│   │   ├── logger
-│   │   │   ├── index.js
-│   │   │   ├── index.js.map
-│   │   │   ├── logger.js
-│   │   │   ├── logger.js.map
-│   │   │   ├── morgan.js
-│   │   │   └── morgan.js.map
-│   │   ├── paginate
-│   │   │   ├── paginate.plugin.js
-│   │   │   └── paginate.plugin.js.map
-│   │   ├── swagger
-│   │   │   ├── components.yaml
-│   │   │   ├── swagger.definition.js
-│   │   │   └── swagger.definition.js.map
-│   │   ├── toJSON
-│   │   │   ├── hideToJSON.plugin.js
-│   │   │   ├── hideToJSON.plugin.js.map
-│   │   │   ├── index.js
-│   │   │   ├── index.js.map
-│   │   │   ├── toJSON.plugin.js
-│   │   │   └── toJSON.plugin.js.map
-│   │   ├── token
-│   │   │   ├── index.js
-│   │   │   ├── index.js.map
-│   │   │   ├── token.fixture.js
-│   │   │   ├── token.fixture.js.map
-│   │   │   ├── token.interfaces.js
-│   │   │   ├── token.interfaces.js.map
-│   │   │   ├── token.model.js
-│   │   │   ├── token.model.js.map
-│   │   │   ├── token.service.js
-│   │   │   ├── token.service.js.map
-│   │   │   ├── token.types.js
-│   │   │   └── token.types.js.map
-│   │   ├── user
-│   │   │   ├── index.js
-│   │   │   ├── index.js.map
-│   │   │   ├── user.controller.js
-│   │   │   ├── user.controller.js.map
-│   │   │   ├── user.fixture.js
-│   │   │   ├── user.fixture.js.map
-│   │   │   ├── user.interfaces.js
-│   │   │   ├── user.interfaces.js.map
-│   │   │   ├── user.model.js
-│   │   │   ├── user.model.js.map
-│   │   │   ├── user.model.test.js
-│   │   │   ├── user.model.test.js.map
-│   │   │   ├── user.service.js
-│   │   │   ├── user.service.js.map
-│   │   │   ├── user.test.js
-│   │   │   ├── user.test.js.map
-│   │   │   ├── user.validation.js
-│   │   │   └── user.validation.js.map
-│   │   ├── utils
-│   │   │   ├── catchAsync.js
-│   │   │   ├── catchAsync.js.map
-│   │   │   ├── index.js
-│   │   │   ├── index.js.map
-│   │   │   ├── pick.js
-│   │   │   ├── pick.js.map
-│   │   │   ├── rateLimiter.js
-│   │   │   └── rateLimiter.js.map
-│   │   └── validate
-│   │       ├── custom.validation.js
-│   │       ├── custom.validation.js.map
-│   │       ├── index.js
-│   │       ├── index.js.map
-│   │       ├── validate.middleware.js
-│   │       └── validate.middleware.js.map
-│   └── routes
-│       └── v1
-│           ├── auth.route.js
-│           ├── auth.route.js.map
-│           ├── index.js
-│           ├── index.js.map
-│           ├── swagger.route.js
-│           ├── swagger.route.js.map
-│           ├── user.route.js
-│           └── user.route.js.map
-├── docker-compose.dev.yml
-├── docker-compose.prod.yml
-├── docker-compose.test.yml
-├── docker-compose.yml
-├── Dockerfile
-├── ecosystem.config.json
-├── jest.config.cjs
+.
+├── dist                            # Destination files
+│   ├── app.js                        # Express App
+│   ├── app.js.map                    # TS source map file
+│   ├── config                        # Environment variables and other configurations
+│   ├── index.js                      # App entry file
+│   ├── index.js.map                  # TS source map file
+│   ├── modules                       # Modules such as models, controllers, services
+│   └── routes                        # Routes
+├── src                             # Source files
+│   ├── app.ts                        # Express App
+│   ├── config                        # Environment variables and other configurations
+│   ├── custom.d.ts                   # File for extending types from node modules
+│   ├── declaration.d.ts              # File for declaring modules without types
+│   ├── index.ts                      # App entry file
+│   ├── modules                       # Modules such as models, controllers, services 
+│   └── routes                        # Routes
+├── TODO.md                         # TODO List
 ├── package.json
-├── package-lock.json
-├── README.md
-├── src
-│   ├── app.ts
-│   ├── config
-│   │   ├── config.ts
-│   │   └── roles.ts
-│   ├── custom.d.ts
-│   ├── declaration.d.ts
-│   ├── index.ts
-│   ├── modules
-│   │   ├── auth
-│   │   │   ├── auth.controller.ts
-│   │   │   ├── auth.middleware.ts
-│   │   │   ├── auth.service.ts
-│   │   │   ├── auth.test.ts
-│   │   │   ├── auth.validation.ts
-│   │   │   ├── index.ts
-│   │   │   └── passport.ts
-│   │   ├── email
-│   │   │   ├── email.interfaces.ts
-│   │   │   ├── email.service.ts
-│   │   │   └── index.ts
-│   │   ├── errors
-│   │   │   ├── ApiError.ts
-│   │   │   ├── error.test.ts
-│   │   │   ├── error.ts
-│   │   │   └── index.ts
-│   │   ├── jest
-│   │   │   └── setupTestDB.ts
-│   │   ├── logger
-│   │   │   ├── index.ts
-│   │   │   ├── logger.ts
-│   │   │   └── morgan.ts
-│   │   ├── paginate
-│   │   │   └── paginate.plugin.ts
-│   │   ├── swagger
-│   │   │   └── swagger.definition.ts
-│   │   ├── toJSON
-│   │   │   ├── hideToJSON.plugin.ts
-│   │   │   ├── index.ts
-│   │   │   └── toJSON.plugin.ts
-│   │   ├── token
-│   │   │   ├── index.ts
-│   │   │   ├── token.fixture.ts
-│   │   │   ├── token.interfaces.ts
-│   │   │   ├── token.model.ts
-│   │   │   ├── token.service.ts
-│   │   │   └── token.types.ts
-│   │   ├── user
-│   │   │   ├── index.ts
-│   │   │   ├── user.controller.ts
-│   │   │   ├── user.fixture.ts
-│   │   │   ├── user.interfaces.ts
-│   │   │   ├── user.model.test.ts
-│   │   │   ├── user.model.ts
-│   │   │   ├── user.service.ts
-│   │   │   ├── user.test.ts
-│   │   │   └── user.validation.ts
-│   │   ├── utils
-│   │   │   ├── catchAsync.ts
-│   │   │   ├── index.ts
-│   │   │   ├── pick.ts
-│   │   │   └── rateLimiter.ts
-│   │   └── validate
-│   │       ├── custom.validation.ts
-│   │       ├── index.ts
-│   │       └── validate.middleware.ts
-│   └── routes
-│       └── v1
-│           ├── auth.route.ts
-│           ├── index.ts
-│           ├── swagger.route.ts
-│           └── user.route.ts
-├── TODO.md
-├── treefile.md
-├── tsconfig.json
-├── tsconfig.tsbuildinfo
-├── yarn-error.log
-└── yarn.lock
+└── README.md
 ```
 
 ## API Documentation
@@ -548,6 +394,14 @@ The toJSON plugin applies the following changes in the toJSON transform call:
 - removes \_\_v, createdAt, updatedAt, and any schema path that has private: true
 - replaces \_id with id
 
+### hideToJSON
+
+The hideToJSON plugin applies the following changes in the toJSON transform call:
+
+- removes \_\_v, createdAt, updatedAt
+- replaces \_id with id
+- allows user to dynamically hide field by passing schema paths
+
 ### paginate
 
 The paginate plugin adds the `paginate` static method to the mongoose schema.
@@ -598,3 +452,15 @@ To modify the ESLint configuration, update the `.eslintrc.json` file. To modify 
 To prevent a certain file or directory from being linted, add it to `.eslintignore` and `.prettierignore`.
 
 To maintain a consistent coding style across different IDEs, the project contains `.editorconfig`
+
+## Contributing
+
+Contributions are more than welcome! Please check out the [contributing guide](CONTRIBUTING.md).
+
+## Inspirations
+
+- [hagopj13/node-express-boilerplate](https://github.com/hagopj13/node-express-boilerplate.git)
+
+## License
+
+[MIT](LICENSE)

@@ -1,13 +1,14 @@
 ### Deployment Tasks
 
-- [ ] Add README
+- [x] Add README
 - [ ] Add Changelog
-- [ ] Add Code of Conduct
-- [ ] Add Contributing rules
+- [x] Add Code of Conduct
+- [x] Add Contributing rules
 - [ ] Add GitHub CI
   - [ ] Set up GitHub CI
   - [ ] Add GitHub CI Badge
-- [ ] Fix swagger components issue
+- [x] Fix swagger components issue
+- [x] Add License
 
 ### Testing Tasks
 
