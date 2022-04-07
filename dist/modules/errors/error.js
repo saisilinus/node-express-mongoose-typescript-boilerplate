@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import mongoose from 'mongoose';
 import httpStatus from 'http-status';
 import config from '../../config/config';
@@ -15,6 +14,7 @@ export const errorConverter = (err, _req, _res, next) => {
   }
   next(error);
 };
+// eslint-disable-next-line no-unused-vars
 export const errorHandler = (err, _req, res, _next) => {
   let { statusCode, message } = err;
   if (config.env === 'production' && !err.isOperational) {

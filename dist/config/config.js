@@ -1,8 +1,6 @@
 import Joi from 'joi';
-import path from 'path';
-import dotenv from 'dotenv';
+import 'dotenv/config';
 
-dotenv.config({ path: path.join(__dirname, '../../.env') });
 const envVarsSchema = Joi.object()
   .keys({
     NODE_ENV: Joi.string().valid('production', 'development', 'test').required(),
@@ -29,7 +27,7 @@ const { value: envVars, error } = envVarsSchema.prefs({ errors: { label: 'key' }
 if (error) {
   throw new Error(`Config validation error: ${error.message}`);
 }
-export default {
+const config = {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
   mongoose: {
@@ -67,4 +65,5 @@ export default {
     from: envVars.EMAIL_FROM,
   },
 };
+export default config;
 // # sourceMappingURL=config.js.map

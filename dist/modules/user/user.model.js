@@ -1,11 +1,11 @@
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 import validator from 'validator';
 import bcrypt from 'bcryptjs';
 import toJSON from '../toJSON/toJSON.plugin';
 import paginate from '../paginate/paginate.plugin';
 import { roles } from '../../config/roles';
 
-const userSchema = new Schema(
+const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -79,6 +79,6 @@ userSchema.pre('save', async function (next) {
   }
   next();
 });
-const User = model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 export default User;
 // # sourceMappingURL=user.model.js.map

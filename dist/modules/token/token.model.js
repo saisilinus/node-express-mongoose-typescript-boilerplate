@@ -1,8 +1,8 @@
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 import tokenTypes from './token.types';
 import toJSON from '../toJSON/toJSON.plugin';
 
-const tokenSchema = new Schema(
+const tokenSchema = new mongoose.Schema(
   {
     token: {
       type: String,
@@ -34,6 +34,6 @@ const tokenSchema = new Schema(
 );
 // add plugin that converts mongoose to json
 tokenSchema.plugin(toJSON);
-const Token = model('Token', tokenSchema);
+const Token = mongoose.model('Token', tokenSchema);
 export default Token;
 // # sourceMappingURL=token.model.js.map

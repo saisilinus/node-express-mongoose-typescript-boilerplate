@@ -1,4 +1,4 @@
-import { Schema, model, ObjectId } from 'mongoose';
+import mongoose from 'mongoose';
 import validator from 'validator';
 import bcrypt from 'bcryptjs';
 import toJSON from '../toJSON/toJSON.plugin';
@@ -6,7 +6,7 @@ import paginate from '../paginate/paginate.plugin';
 import { roles } from '../../config/roles';
 import { IUserDoc, IUserModel } from './user.interfaces';
 
-const userSchema = new Schema<IUserDoc, IUserModel>(
+const userSchema = new mongoose.Schema<IUserDoc, IUserModel>(
   {
     name: {
       type: String,
@@ -62,7 +62,7 @@ userSchema.plugin(paginate);
  * @param {ObjectId} [excludeUserId] - The id of the user to be excluded
  * @returns {Promise<boolean>}
  */
-userSchema.static('isEmailTaken', async function (email: string, excludeUserId: ObjectId): Promise<boolean> {
+userSchema.static('isEmailTaken', async function (email: string, excludeUserId: mongoose.ObjectId): Promise<boolean> {
   const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
   return !!user;
 });
@@ -85,6 +85,6 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-const User = model<IUserDoc, IUserModel>('User', userSchema);
+const User = mongoose.model<IUserDoc, IUserModel>('User', userSchema);
 
 export default User;
