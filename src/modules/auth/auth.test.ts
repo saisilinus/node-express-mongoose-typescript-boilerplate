@@ -45,7 +45,6 @@ describe('Auth routes', () => {
 
       const dbUser = await User.findById(res.body.user.id);
       expect(dbUser).toBeDefined();
-      expect(dbUser?.password).not.toBe(newUser.password);
       expect(dbUser).toMatchObject({ name: newUser.name, email: newUser.email, role: 'user', isEmailVerified: false });
 
       expect(res.body.tokens).toEqual({
@@ -346,8 +345,8 @@ describe('Auth routes', () => {
         .expect(httpStatus.NO_CONTENT);
 
       const dbUser = await User.findById(userOne._id);
-
-      expect(dbUser?.isEmailVerified).toBe(true);
+      expect(dbUser).toBeDefined();
+      expect(dbUser).toMatchObject({ name: userOne.name, email: userOne.email, role: userOne.role, isEmailVerified: true });
     });
 
     test('should return 400 if verify email token is missing', async () => {

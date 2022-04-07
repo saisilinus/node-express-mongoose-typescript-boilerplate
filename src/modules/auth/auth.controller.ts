@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import catchAsync from '../utils/catchAsync';
 import { tokenService } from '../token';
 import { userService } from '../user';
-import { authService } from '.';
+import * as authService from './auth.service';
 import { emailService } from '../email';
 
 export const register = catchAsync(async (req: Request, res: Response) => {

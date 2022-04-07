@@ -4,10 +4,3 @@ export default {
   RESET_PASSWORD: 'resetPassword',
   VERIFY_EMAIL: 'verifyEmail',
 };
-
-export enum TokensEnum {
-  'access',
-  'refresh',
-  'resetPassword',
-  'verifyEmail',
-}
