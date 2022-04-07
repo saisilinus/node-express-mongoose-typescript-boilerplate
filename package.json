@@ -83,10 +83,10 @@
     "prettier": "^2.5.1",
     "supertest": "^6.1.6",
     "ts-jest": "^27.1.3",
-    "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
   },
   "dependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.7",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
@@ -111,7 +111,6 @@
     "swagger-ui-express": "^4.2.0",
     "validator": "^13.7.0",
     "winston": "^3.3.3",
-    "xss-clean": "^0.1.1",
-    "@faker-js/faker": "^6.0.0-alpha.7"
+    "xss-clean": "^0.1.1"
   }
 }
