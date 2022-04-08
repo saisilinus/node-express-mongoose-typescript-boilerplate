@@ -5,7 +5,6 @@ import ExpressMongoSanitize from 'express-mongo-sanitize';
 import compression from 'compression';
 import cors from 'cors';
 import passport from 'passport';
-import cookieParser from 'cookie-parser';
 import httpStatus from 'http-status';
 import config from './config/config';
 import { morgan } from './modules/logger';
@@ -21,8 +20,6 @@ if (config.env !== 'test') {
 }
 // set security HTTP headers
 app.use(helmet());
-// use cookie parser for jwt
-app.use(cookieParser(config.cookies.secret));
 // enable cors
 app.use(cors());
 app.options('*', cors());
