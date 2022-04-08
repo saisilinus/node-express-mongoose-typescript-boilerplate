@@ -39,7 +39,6 @@ cp .env.example .env
 - [Logging](#logging)
 - [Custom Mongoose Plugins](#custom-mongoose-plugins)
   - [To JSON Plugin](#tojson)
-  - [Hide to JSON Plugin](#hidetojson)
   - [Paginate Plugin](#paginate)
 - [Linting](#linting)
 - [Contributing](#contributing)
@@ -154,9 +153,9 @@ Manually fix remaining linting errors in the JS files
 ## Linting Errors After Compiling
 
 After compiling, you are likely to get linting errors since some were disabled through comments in TypeScript files. Currently, the following files get linting errors after running `yarn compile`:
-  - dist/modules/errors/error.js: fix -> `// eslint-disable-next-line no-unused-vars`
-  - dist/modules/toJSON/hideToJSON.plugin.js: fix -> `/* eslint-disable no-param-reassign */`
-  - dist/modules/toJSON/toJSON.plugin.js: fix -> `/* eslint-disable no-param-reassign */`
+  - dist/modules/errors/error.js: fix -> disable `no-unused-vars` for the line
+  - dist/modules/toJSON/hideToJSON.plugin.js: fix -> disable `no-param-reassign` for the whole file
+  - dist/modules/toJSON/toJSON.plugin.js: fix -> disable `no-param-reassign` for the whole file
 
 ## Environment Variables
 
@@ -368,11 +367,11 @@ Note: API request information (request url, response code, timestamp, etc.) are 
 
 ## Custom Mongoose Plugins
 
-The app also contains 2 custom mongoose plugins that you can attach to any mongoose model schema. You can find the plugins in `src/models/plugins`.
+The app also contains 3 custom mongoose plugins that you can attach to any mongoose model schema. You can find the plugins in `src/models/plugins`.
 
 ```javascript
 const mongoose = require('mongoose');
-const { toJSON, paginate } = require('./plugins');
+const { toJSON, paginate, hideToJSON } = require('./plugins');
 
 const userSchema = mongoose.Schema(
   {
@@ -384,6 +383,11 @@ const userSchema = mongoose.Schema(
 userSchema.plugin(toJSON);
 userSchema.plugin(paginate);
 
+/* Use hideToJSON f you want to change fields to be hidden by toJSON in every request
+NOTE: You can't use both toJSON and hideToJSON for the same schema*/
+userSchema.plugin(hideToJSON);
+
+
 const User = mongoose.model('User', userSchema);
 ```
 
@@ -393,14 +397,6 @@ The toJSON plugin applies the following changes in the toJSON transform call:
 
 - removes \_\_v, createdAt, updatedAt, and any schema path that has private: true
 - replaces \_id with id
-
-### hideToJSON
-
-The hideToJSON plugin applies the following changes in the toJSON transform call:
-
-- removes \_\_v, createdAt, updatedAt
-- replaces \_id with id
-- allows user to dynamically hide field by passing schema paths
 
 ### paginate
 
@@ -424,8 +420,15 @@ const options = {
   sortBy: 'name:desc', // sort order
   limit: 5, // maximum results per page
   page: 2, // page number
+  projectBy: 'name:hide, role:hide', // fields to hide or include in the results
 };
 ```
+
+The `projectBy` option can include multiple criteria (separated by a comma) but cannot include and exclude fields at the same time. Check out the following examples:
+
+  - [x] `name:hide, role:hide` should work
+  - [x] `name:include, role:include` should work
+  - [ ] `name:include, role:hide` will not work
 
 The plugin also supports sorting by multiple criteria (separated by a comma): `sortBy: name:desc,role:asc`
 

@@ -11,6 +11,7 @@ export interface QueryResult {
 
 export interface IOptions {
   sortBy: string;
+  projectBy: string;
   populate: string;
   limit: number;
   page: number;
@@ -33,6 +34,7 @@ const paginate = (schema: Schema) => {
    * @param {string} [options.populate] - Populate data fields. Hierarchy of fields should be separated by (.). Multiple populating criteria should be separated by commas (,)
    * @param {number} [options.limit] - Maximum number of results per page (default = 10)
    * @param {number} [options.page] - Current page (default = 1)
+   * @param {string} [options.projectBy] - Fields to hide or include (default = '')
    * @returns {Promise<QueryResult>}
    */
   schema.static('paginate', async function (filter: Record<string, any>, options: IOptions) {
@@ -48,12 +50,24 @@ const paginate = (schema: Schema) => {
       sort = 'createdAt';
     }
 
+    let project = '';
+    if (options.projectBy) {
+      const projectionCriteria: string[] = [];
+      options.projectBy.split(',').forEach((projectOption) => {
+        const [key, include] = projectOption.split(':');
+        projectionCriteria.push((include === 'hide' ? '-' : '') + key);
+      });
+      project = projectionCriteria.join(' ');
+    } else {
+      project = '-createdAt -updatedAt';
+    }
+
     const limit = options.limit && parseInt(options.limit.toString(), 10) > 0 ? parseInt(options.limit.toString(), 10) : 10;
     const page = options.page && parseInt(options.page.toString(), 10) > 0 ? parseInt(options.page.toString(), 10) : 1;
     const skip = (page - 1) * limit;
 
     const countPromise = this.countDocuments(filter).exec();
-    let docsPromise = this.find(filter).sort(sort).skip(skip).limit(limit);
+    let docsPromise = this.find(filter).sort(sort).skip(skip).limit(limit).select(project);
 
     if (options.populate) {
       options.populate.split(',').forEach((populateOption: any) => {

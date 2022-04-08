@@ -102,6 +102,11 @@ export default router;
  *           type: string
  *         description: sort by query in the form of field:desc/asc (ex. name:asc)
  *       - in: query
+ *         name: projectBy
+ *         schema:
+ *           type: string
+ *         description: project by query in the form of field:hide/include (ex. name:hide)
+ *       - in: query
  *         name: limit
  *         schema:
  *           type: integer
