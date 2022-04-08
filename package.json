@@ -7,6 +7,9 @@
   "author": "wafula saisi <waflinus96@gmail.com>",
   "license": "MIT",
   "type": "module",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "scripts": {
     "start": "pm2 start ecosystem.config.json --no-daemon",
     "dev": "cross-env NODE_ENV=development nodemon --experimental-modules --es-module-specifier-resolution=node dist/index.js",
@@ -23,7 +26,8 @@
     "docker:test": "docker-compose -f docker-compose.yml -f docker-compose.test.yml up",
     "prepare": "husky install",
     "compile": "tsc --build && eslint . --fix",
-    "compile:watch": "tsc --build src --watch"
+    "compile:watch": "tsc --build src --watch",
+    "release": "standard-version"
   },
   "keywords": [
     "node",
@@ -81,6 +85,7 @@
     "node-mocks-http": "^1.11.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
+    "standard-version": "^9.3.2",
     "supertest": "^6.1.6",
     "ts-jest": "^27.1.3",
     "typescript": "^4.5.4"
