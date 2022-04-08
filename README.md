@@ -154,7 +154,6 @@ Manually fix remaining linting errors in the JS files
 
 After compiling, you are likely to get linting errors since some were disabled through comments in TypeScript files. Currently, the following files get linting errors after running `yarn compile`:
   - dist/modules/errors/error.js: fix -> disable `no-unused-vars` for the line
-  - dist/modules/toJSON/hideToJSON.plugin.js: fix -> disable `no-param-reassign` for the whole file
   - dist/modules/toJSON/toJSON.plugin.js: fix -> disable `no-param-reassign` for the whole file
 
 ## Environment Variables
@@ -367,11 +366,11 @@ Note: API request information (request url, response code, timestamp, etc.) are 
 
 ## Custom Mongoose Plugins
 
-The app also contains 3 custom mongoose plugins that you can attach to any mongoose model schema. You can find the plugins in `src/models/plugins`.
+The app also contains 2 custom mongoose plugins that you can attach to any mongoose model schema. You can find the plugins in `src/models/plugins`.
 
 ```javascript
 const mongoose = require('mongoose');
-const { toJSON, paginate, hideToJSON } = require('./plugins');
+const { toJSON, paginate } = require('./plugins');
 
 const userSchema = mongoose.Schema(
   {
@@ -382,11 +381,6 @@ const userSchema = mongoose.Schema(
 
 userSchema.plugin(toJSON);
 userSchema.plugin(paginate);
-
-/* Use hideToJSON f you want to change fields to be hidden by toJSON in every request
-NOTE: You can't use both toJSON and hideToJSON for the same schema*/
-userSchema.plugin(hideToJSON);
-
 
 const User = mongoose.model('User', userSchema);
 ```
