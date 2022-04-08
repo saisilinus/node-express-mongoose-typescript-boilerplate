@@ -1,5 +1,7 @@
 # RESTful API Node Typescript Server Boilerplate
 
+[![Node.js CI](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/actions/workflows/node.js.yml/badge.svg)](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/actions/workflows/node.js.yml)
+
 ## Manual Installation
 
 Clone the repo:
