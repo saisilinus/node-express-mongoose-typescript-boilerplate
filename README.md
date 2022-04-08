@@ -99,6 +99,12 @@ Compiling to JS from TS in watch mode
 yarn compile:watch
 ```
 
+Commiting changes
+
+```bash
+yarn commit
+```
+
 Testing:
 
 ```bash
