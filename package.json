@@ -27,7 +27,8 @@
     "prepare": "husky install",
     "compile": "tsc --build && eslint . --fix",
     "compile:watch": "tsc --build src --watch",
-    "release": "standard-version"
+    "release": "standard-version",
+    "commit": "cz"
   },
   "keywords": [
     "node",
@@ -52,6 +53,8 @@
     "prettier"
   ],
   "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
     "@jest/globals": "^27.5.1",
     "@types/bcryptjs": "^2.4.2",
     "@types/compression": "^1.7.2",
@@ -70,7 +73,9 @@
     "@types/validator": "^13.7.0",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
+    "commitizen": "^4.2.4",
     "coveralls": "^3.1.1",
+    "cz-conventional-changelog": "3.3.0",
     "eslint": "^8.4.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^16.1.0",
@@ -116,5 +121,10 @@
     "validator": "^13.7.0",
     "winston": "^3.3.3",
     "xss-clean": "^0.1.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
