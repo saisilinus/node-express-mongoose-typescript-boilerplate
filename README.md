@@ -72,6 +72,9 @@ cp .env.example .env
 - **Git hooks**: with [husky](https://github.com/typicode/husky) and [lint-staged](https://github.com/okonet/lint-staged)
 - **Linting**: with [ESLint](https://eslint.org) and [Prettier](https://prettier.io)
 - **Editor config**: consistent editor configuration using [EditorConfig](https://editorconfig.org)
+- **Changelog Generation**: with [Standard Version](https://github.com/conventional-changelog/standard-version)
+- **Structured Commit Messages**: with [Commitizen](https://github.com/commitizen/cz-cli)
+- **Commit Linting**: with [CommitLint](https://github.com/conventional-changelog/commitlint)
 
 ## Commands
 
