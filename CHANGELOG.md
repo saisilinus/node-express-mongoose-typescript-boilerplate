@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v0.0.4...v1.0.0) (2022-04-08)
+
+
+### Features
+
+* add commitlint ([9f98cda](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/9f98cdaadacc8fa6387ecf4d4232848915ad5a79))
+* add status badge ([794b205](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/794b2058f55ce633bbf075920880a4438dbc9fcd))
+
+
+### Bug Fixes
+
+* add env variables to node.js.yml ([7bd7c28](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/7bd7c28826442f1893f3cf4d341a56505e875192))
+
 ### [0.0.4](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v0.0.3...v0.0.4) (2022-04-08)
 
 
