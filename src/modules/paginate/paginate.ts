@@ -10,11 +10,11 @@ export interface QueryResult {
 }
 
 export interface IOptions {
-  sortBy: string;
-  projectBy: string;
-  populate: string;
-  limit: number;
-  page: number;
+  sortBy?: string;
+  projectBy?: string;
+  populate?: string;
+  limit?: number;
+  page?: number;
 }
 
 const paginate = (schema: Schema) => {
@@ -37,8 +37,8 @@ const paginate = (schema: Schema) => {
    * @param {string} [options.projectBy] - Fields to hide or include (default = '')
    * @returns {Promise<QueryResult>}
    */
-  schema.static('paginate', async function (filter: Record<string, any>, options: IOptions) {
-    let sort = '';
+  schema.static('paginate', async function (filter: Record<string, any>, options: IOptions): Promise<QueryResult> {
+    let sort: string = '';
     if (options.sortBy) {
       const sortingCriteria: any = [];
       options.sortBy.split(',').forEach((sortOption: string) => {
@@ -50,7 +50,7 @@ const paginate = (schema: Schema) => {
       sort = 'createdAt';
     }
 
-    let project = '';
+    let project: string = '';
     if (options.projectBy) {
       const projectionCriteria: string[] = [];
       options.projectBy.split(',').forEach((projectOption) => {

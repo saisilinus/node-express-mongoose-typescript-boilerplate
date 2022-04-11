@@ -1,5 +1,5 @@
 import mongoose, { Model, LeanDocument, Document } from 'mongoose';
-import { QueryResult } from '../paginate/paginate.plugin';
+import { QueryResult } from '../paginate/paginate';
 
 export interface IUser {
   name: string;
