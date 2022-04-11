@@ -9,6 +9,13 @@ export interface IToken {
   blacklisted: boolean;
 }
 
+export interface NewToken {
+  token: string;
+  user: string;
+  type: string;
+  expires: Date;
+}
+
 export interface ITokenDoc extends IToken, Document {}
 
 export interface ITokenModel extends Model<ITokenDoc> {
