@@ -1,4 +1,4 @@
-import { Document, Model, LeanDocument } from 'mongoose';
+import { Document, Model } from 'mongoose';
 import { JwtPayload } from 'jsonwebtoken';
 
 export interface IToken {
@@ -18,9 +18,7 @@ export interface NewToken {
 
 export interface ITokenDoc extends IToken, Document {}
 
-export interface ITokenModel extends Model<ITokenDoc> {
-  toJSON(): LeanDocument<this>;
-}
+export interface ITokenModel extends Model<ITokenDoc> {}
 
 export interface IPayload extends JwtPayload {
   sub: string;
