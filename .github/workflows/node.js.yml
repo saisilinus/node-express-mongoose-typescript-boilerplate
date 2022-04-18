@@ -28,7 +28,7 @@ jobs:
 
     steps:
     - name: Run linting tests
-    - run: yarn lint
+      run: yarn lint
 
   run-unit-tests:
 
@@ -38,7 +38,7 @@ jobs:
 
     steps:
     - name: Run unit tests
-    - run: yarn test
+      run: yarn test
 
   generate-coverage:
 
@@ -50,17 +50,4 @@ jobs:
 
     steps:
     - name: Generate coverage
-    - run: yarn coverage:coveralls
-
-  send-coverage-to-coveralls:
-
-    runs-on: ubuntu-latest
-
-    needs: generate-coverage
-
-    uses: coverallsapp/github-action@v1.1.2
-
-    steps:
-    - name: Publish to coveralls.io
-      with:
-        github-token: ${{ github.token }}
+      run: yarn coverage:coveralls
