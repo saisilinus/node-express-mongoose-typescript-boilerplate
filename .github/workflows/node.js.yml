@@ -21,21 +21,24 @@ env:
 
 jobs:
   run-linting-tests:
-    uses: ./.github/workflows/setUp.yml
     steps:
+    - name: Run linting tests
+      uses: ./.github/workflows/setUp.yml
     - run: yarn lint
 
   run-unit-tests:
-    uses: ./.github/workflows/setUp.yml
     steps:
-    - run: yarn lint
+    - name: Run unit tests
+      uses: ./.github/workflows/setUp.yml
+    - run: yarn test
 
   generate-coverage:
 
     needs: build
 
-    uses: ./.github/workflows/setUp.yml
     steps:
+    - name: Generate coverage
+      uses: ./.github/workflows/setUp.yml
     - run: yarn coverage:coveralls
 
   send-coverage-to-coveralls.io:
