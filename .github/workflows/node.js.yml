@@ -72,3 +72,15 @@ jobs:
     - run: yarn
     - name: Generate coverage
       run: yarn coverage:coveralls
+
+  publish-to-coveralls:
+
+    runs-on: ubuntu-latest
+
+    needs: generate-coverage
+
+    steps:
+    - name: Publish to coveralls.io
+      uses: coverallsapp/github-action@v1.1.2
+      with:
+        github-token: ${{ github.token }}
