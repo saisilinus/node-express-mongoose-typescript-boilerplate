@@ -1,4 +1,4 @@
-import { Document, Model, LeanDocument } from 'mongoose';
+import { Document, Model } from 'mongoose';
 import { JwtPayload } from 'jsonwebtoken';
 
 export interface IToken {
@@ -9,11 +9,16 @@ export interface IToken {
   blacklisted: boolean;
 }
 
+export interface NewToken {
+  token: string;
+  user: string;
+  type: string;
+  expires: Date;
+}
+
 export interface ITokenDoc extends IToken, Document {}
 
-export interface ITokenModel extends Model<ITokenDoc> {
-  toJSON(): LeanDocument<this>;
-}
+export interface ITokenModel extends Model<ITokenDoc> {}
 
 export interface IPayload extends JwtPayload {
   sub: string;
