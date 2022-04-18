@@ -49,7 +49,7 @@ jobs:
       uses: ./.github/workflows/setUp.yml
     - run: yarn coverage:coveralls
 
-  send-coverage-to-coveralls.io:
+  send-coverage-to-coveralls:
 
     runs-on: ubuntu-latest
 
