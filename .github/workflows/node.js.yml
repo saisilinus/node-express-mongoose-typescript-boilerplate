@@ -21,18 +21,26 @@ env:
 
 jobs:
   run-linting-tests:
+
+    runs-on: ubuntu-latest
+
     steps:
     - name: Run linting tests
       uses: ./.github/workflows/setUp.yml
     - run: yarn lint
 
   run-unit-tests:
+
+    runs-on: ubuntu-latest
+
     steps:
     - name: Run unit tests
       uses: ./.github/workflows/setUp.yml
     - run: yarn test
 
   generate-coverage:
+
+    runs-on: ubuntu-latest
 
     needs: build
 
@@ -42,6 +50,8 @@ jobs:
     - run: yarn coverage:coveralls
 
   send-coverage-to-coveralls.io:
+
+    runs-on: ubuntu-latest
 
     needs: build
 
