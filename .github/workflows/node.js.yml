@@ -69,8 +69,6 @@ jobs:
 
     needs: run-unit-tests
 
-    uses: ./.github/workflows/setUp.yml
-
     steps:
     - name: Generate coverage
       run: yarn coverage:coveralls
