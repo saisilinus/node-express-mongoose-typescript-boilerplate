@@ -24,18 +24,20 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    uses: ./.github/workflows/setUp.yml
+
     steps:
     - name: Run linting tests
-      uses: ./.github/workflows/setUp.yml
     - run: yarn lint
 
   run-unit-tests:
 
     runs-on: ubuntu-latest
 
+    uses: ./.github/workflows/setUp.yml
+
     steps:
     - name: Run unit tests
-      uses: ./.github/workflows/setUp.yml
     - run: yarn test
 
   generate-coverage:
@@ -44,9 +46,10 @@ jobs:
 
     needs: run-unit-tests
 
+    uses: ./.github/workflows/setUp.yml
+
     steps:
     - name: Generate coverage
-      uses: ./.github/workflows/setUp.yml
     - run: yarn coverage:coveralls
 
   send-coverage-to-coveralls:
@@ -55,8 +58,9 @@ jobs:
 
     needs: generate-coverage
 
+    uses: coverallsapp/github-action@v1.1.2
+
     steps:
     - name: Publish to coveralls.io
-      uses: coverallsapp/github-action@v1.1.2
       with:
         github-token: ${{ github.token }}
