@@ -49,6 +49,12 @@ jobs:
 
     needs: build
 
+    strategy:
+      matrix:
+        node-version: [14.x]
+        mongodb-version: [4.0]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -69,6 +75,12 @@ jobs:
 
     needs: run-linting-tests
 
+    strategy:
+      matrix:
+        node-version: [14.x]
+        mongodb-version: [4.0]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -88,6 +100,12 @@ jobs:
     runs-on: ubuntu-latest
 
     needs: run-unit-tests
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        mongodb-version: [4.0]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v2
