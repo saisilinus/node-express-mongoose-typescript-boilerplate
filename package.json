@@ -16,7 +16,7 @@
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -i --colors --verbose --detectOpenHandles",
     "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -i --watchAll",
     "coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -i --coverage",
-    "coverage:coveralls": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -i --coverage --coverageReporters=text-lcov | coveralls",
+    "coverage:coveralls": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -i --coverage --coverageReporters=lcov",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --check **/*.js",
