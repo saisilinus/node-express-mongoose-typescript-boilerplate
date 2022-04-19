@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v1.0.0...v1.1.0) (2022-04-19)
+
+
+### Features
+
+* add coverage ([ea05317](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/ea053179e467644ef5e55523f38d1ac1f16729c7))
+* add paginate tests ([c9f83bf](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/c9f83bfeac72d47ab56059c74c98d2d3b998e2fb))
+* add publish action ([9652d49](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/9652d49fb1dc7e70b71ebd58ccac1e07d3155e72))
+* add toJSON tests ([86a9fbe](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/86a9fbe42dd32443e3b038cb8a94a07ec7506f16))
+* add token model tests ([537e553](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/537e5533bb88d965ba1654e7ba9bd4af9b15e1f8))
+
+
+### Bug Fixes
+
+* cannot define both `uses` and `steps` ([4c78224](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/4c782247afdc8b292788060b9aa081f1721cb60e))
+* ci ([1e22672](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/1e2267260ec170a5adc80c6d06cc957025d2e592))
+* ci strategy ([ffbe250](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/ffbe25041dfe50e4ec25d844a62d4cc8d3a0c67d))
+* ci tests ([45da4d3](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/45da4d3a4b8819720fdbd551086daea0119f1ce7))
+* code duplication ([3526605](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/3526605d1b1ee663741e53472f16e17e71936a2e))
+* continuous integration errors ([c673d37](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/c673d378ee86ca903ec821e86539864cd737f32e))
+* coverage ([eb8a75d](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/eb8a75d23c99165ba675e1adb70b5bf29611236d))
+* coverage report ([5be0921](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/5be0921dfc10c347fbfb7df2a21e723e10d741e1))
+* coveralls ([9748c19](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/9748c19e7eae2a5fe88f90d6f4dccc125a5c349d))
+* every step must have uses or run ([9276a0c](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/9276a0c21b86ef8c3667ff4426e05ba842080959))
+* tests ([3e16f9b](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/3e16f9b552dc13eeb6524687d3e42f1bc6b9d43e))
+* uses in node.js.yml ([1b3e65b](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/1b3e65b4d1d4c07ca5904cc37c072d4582aea834))
+
 ## [1.0.0](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v0.0.4...v1.0.0) (2022-04-08)
 
 
