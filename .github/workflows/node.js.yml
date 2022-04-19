@@ -72,13 +72,5 @@ jobs:
     - run: yarn
     - name: Generate coverage
       run: yarn coverage:coveralls
-
-  publish-to-codecov:
-
-    runs-on: ubuntu-latest
-
-    needs: generate-coverage
-
-    steps:
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2
