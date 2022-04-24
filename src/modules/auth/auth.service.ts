@@ -4,9 +4,8 @@ import Token from '../token/token.model';
 import ApiError from '../errors/ApiError';
 import tokenTypes from '../token/token.types';
 import { getUserByEmail, getUserById, updateUserById } from '../user/user.service';
-import { IUserDoc } from '../user/user.interfaces';
+import { IUserDoc, IUserWithTokens } from '../user/user.interfaces';
 import { generateAuthTokens, verifyToken } from '../token/token.service';
-import { AccessAndRefreshTokens } from '../token/token.interfaces';
 
 /**
  * Login with username and password
@@ -38,9 +37,9 @@ export const logout = async (refreshToken: string): Promise<void> => {
 /**
  * Refresh auth tokens
  * @param {string} refreshToken
- * @returns {Promise<AccessAndRefreshTokens>}
+ * @returns {Promise<IUserWithTokens>}
  */
-export const refreshAuth = async (refreshToken: string): Promise<AccessAndRefreshTokens> => {
+export const refreshAuth = async (refreshToken: string): Promise<IUserWithTokens> => {
   try {
     const refreshTokenDoc = await verifyToken(refreshToken, tokenTypes.REFRESH);
     const user = await getUserById(new mongoose.Types.ObjectId(refreshTokenDoc.user));
@@ -48,7 +47,8 @@ export const refreshAuth = async (refreshToken: string): Promise<AccessAndRefres
       throw new Error();
     }
     await refreshTokenDoc.remove();
-    return await generateAuthTokens(user);
+    const tokens = await generateAuthTokens(user);
+    return { user, tokens };
   } catch (error) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Please authenticate');
   }

@@ -115,6 +115,12 @@ Testing:
 # run all tests
 yarn test
 
+# run TypeScript tests
+yarn test:ts
+
+# run JS tests
+yarn test:js
+
 # run all tests in watch mode
 yarn test:watch
 
@@ -153,7 +159,18 @@ yarn prettier:fix
 
 ## Making Changes
 
-Add your changes to TypeScript(.ts) files which are in the src folder. 
+Add your changes to TypeScript(.ts) files which are in the src folder.
+
+Add tests for the new feature
+
+Run `yarn test:ts` to make sure all Typescript tests pass.
+
+```bash
+yarn test:ts
+```
+
+Make sure `dist\modules\swagger\components.yaml` matches `src\modules\swagger\components.yaml`. Do this for any other non-ts/non-js files that you may have
+
 Compile your TS files to JS by running `yarn compile`
 
 ```bash

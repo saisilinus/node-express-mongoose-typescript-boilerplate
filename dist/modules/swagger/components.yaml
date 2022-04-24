@@ -39,6 +39,14 @@ components:
         refresh:
           $ref: '#/components/schemas/Token'
 
+    UserWithTokens:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        tokens:
+          $ref: '#/components/schemas/AuthTokens'
+
     Error:
       type: object
       properties:

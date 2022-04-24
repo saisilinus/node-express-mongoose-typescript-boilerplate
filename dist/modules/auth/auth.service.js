@@ -33,7 +33,7 @@ export const logout = async (refreshToken) => {
 /**
  * Refresh auth tokens
  * @param {string} refreshToken
- * @returns {Promise<AccessAndRefreshTokens>}
+ * @returns {Promise<IUserWithTokens>}
  */
 export const refreshAuth = async (refreshToken) => {
   try {
@@ -43,7 +43,8 @@ export const refreshAuth = async (refreshToken) => {
       throw new Error();
     }
     await refreshTokenDoc.remove();
-    return await generateAuthTokens(user);
+    const tokens = await generateAuthTokens(user);
+    return { user, tokens };
   } catch (error) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Please authenticate');
   }

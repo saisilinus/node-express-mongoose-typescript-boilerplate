@@ -1,5 +1,6 @@
 import mongoose, { Model, Document } from 'mongoose';
 import { QueryResult } from '../paginate/paginate';
+import { AccessAndRefreshTokens } from '../token/token.interfaces';
 
 export interface IUser {
   name: string;
@@ -18,23 +19,13 @@ export interface IUserModel extends Model<IUserDoc> {
   paginate(filter: Record<string, any>, options: Record<string, any>): Promise<QueryResult>;
 }
 
-export interface UpdateUserBody {
-  name?: string;
-  email?: string;
-  password?: string;
-  role?: string;
-  isEmailVerified?: boolean;
-}
+export type UpdateUserBody = Partial<IUser>;
 
-export interface NewRegisteredUser {
-  name: string;
-  email: string;
-  password: string;
-}
+export type NewRegisteredUser = Omit<IUser, 'role' | 'isEmailVerified'>;
 
-export interface NewCreatedUser {
-  name: string;
-  email: string;
-  password: string;
-  role: string;
+export type NewCreatedUser = Omit<IUser, 'isEmailVerified'>;
+
+export interface IUserWithTokens {
+  user: IUserDoc;
+  tokens: AccessAndRefreshTokens;
 }

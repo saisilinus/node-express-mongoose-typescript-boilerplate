@@ -176,12 +176,20 @@ describe('Auth routes', () => {
 
       const res = await request(app).post('/v1/auth/refresh-tokens').send({ refreshToken }).expect(httpStatus.OK);
 
-      expect(res.body).toEqual({
+      expect(res.body.user).toEqual({
+        id: expect.anything(),
+        name: userOne.name,
+        email: userOne.email,
+        role: userOne.role,
+        isEmailVerified: userOne.isEmailVerified,
+      });
+
+      expect(res.body.tokens).toEqual({
         access: { token: expect.anything(), expires: expect.anything() },
         refresh: { token: expect.anything(), expires: expect.anything() },
       });
 
-      const dbRefreshTokenDoc = await Token.findOne({ token: res.body.refresh.token });
+      const dbRefreshTokenDoc = await Token.findOne({ token: res.body.tokens.refresh.token });
       expect(dbRefreshTokenDoc).toMatchObject({ type: tokenTypes.REFRESH, user: userOne._id, blacklisted: false });
 
       const dbRefreshTokenCount = await Token.countDocuments();

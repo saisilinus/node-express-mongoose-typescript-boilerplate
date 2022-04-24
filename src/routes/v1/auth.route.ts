@@ -169,7 +169,7 @@ export default router;
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/AuthTokens'
+ *               $ref: '#/components/schemas/UserWithTokens'
  *       "401":
  *         $ref: '#/components/responses/Unauthorized'
  */
