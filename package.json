@@ -14,6 +14,8 @@
     "start": "pm2 start ecosystem.config.json --no-daemon",
     "dev": "cross-env NODE_ENV=development nodemon --experimental-modules --es-module-specifier-resolution=node dist/index.js",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -i --colors --verbose --detectOpenHandles",
+    "test:ts": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -i --colors --verbose --detectOpenHandles -- 'ts$'",
+    "test:js": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -i --colors --verbose --detectOpenHandles -- 'js$'",
     "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -i --watchAll",
     "coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -i --coverage",
     "coverage:coveralls": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -i --coverage --coverageReporters=lcov",

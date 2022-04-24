@@ -9,12 +9,7 @@ export interface IToken {
   blacklisted: boolean;
 }
 
-export interface NewToken {
-  token: string;
-  user: string;
-  type: string;
-  expires: Date;
-}
+export type NewToken = Omit<IToken, 'blacklisted'>;
 
 export interface ITokenDoc extends IToken, Document {}
 

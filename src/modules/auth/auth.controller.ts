@@ -25,8 +25,8 @@ export const logout = catchAsync(async (req: Request, res: Response) => {
 });
 
 export const refreshTokens = catchAsync(async (req: Request, res: Response) => {
-  const tokens = await authService.refreshAuth(req.body.refreshToken);
-  res.send({ ...tokens });
+  const userWithTokens = await authService.refreshAuth(req.body.refreshToken);
+  res.send({ ...userWithTokens });
 });
 
 export const forgotPassword = catchAsync(async (req: Request, res: Response) => {
