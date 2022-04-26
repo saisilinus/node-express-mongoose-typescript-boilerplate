@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v1.1.0...v2.0.0) (2022-04-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **components.yaml:** swagger routes have to use the new components.yaml path i.e.
+packages/components.yaml
+* auth/refresh-token api will return user alongside access token and refresh token
+
+### Features
+
+* add hot reloading ([8a11c8a](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/8a11c8a6c529f542b7af2c20978605dd3214162a)), closes [#12](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/issues/12)
+
+
+### Bug Fixes
+
+* **components.yaml:** move components.yaml out of src ([3decabe](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/3decabe03934a8f0ecebc1c81b50b5f12ec73ab5))
+* ts build removeComments ([e94887f](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/e94887f7b5fd4694093bae89219dc42d29abba55))
+
+
+* change refresh token response ([948993d](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/948993df0297ce3a75390a305563b61a5345a19d))
+
 ## [1.1.0](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v1.0.0...v1.1.0) (2022-04-19)
 
 
