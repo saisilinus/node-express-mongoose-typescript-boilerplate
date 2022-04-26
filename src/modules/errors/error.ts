@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
 import { Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import httpStatus from 'http-status';
@@ -18,6 +17,7 @@ export const errorConverter = (err: any, _req: Request, _res: Response, next: Ne
   next(error);
 };
 
+// eslint-disable-next-line no-unused-vars
 export const errorHandler = (err: ApiError, _req: Request, res: Response, _next: NextFunction) => {
   let { statusCode, message } = err;
   if (config.env === 'production' && !err.isOperational) {

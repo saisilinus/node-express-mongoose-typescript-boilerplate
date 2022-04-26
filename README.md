@@ -52,6 +52,7 @@ cp .env.example .env
 
 - **ES9**: latest ECMAScript features
 - **Static Typing**: [TypeScript](https://www.typescriptlang.org/) static typing using typescript
+- **Hot Reloading**: [Concurrently](https://github.com/open-cli-tools/concurrently) Hot realoding with concurrently
 - **NoSQL database**: [MongoDB](https://www.mongodb.com) object data modeling using [Mongoose](https://mongoosejs.com)
 - **Authentication and authorization**: using [passport](http://www.passportjs.org)
 - **Validation**: request data validation using [Joi](https://github.com/hapijs/joi)
@@ -159,7 +160,13 @@ yarn prettier:fix
 
 ## Making Changes
 
-Add your changes to TypeScript(.ts) files which are in the src folder.
+Run `yarn dev` so you can compile Typescript(.ts) files in watch mode
+
+```bash
+yarn dev
+```
+
+Add your changes to TypeScript(.ts) files which are in the src folder. The files will be automatically compiled to JS if you are in watch mode.
 
 Add tests for the new feature
 
@@ -168,16 +175,6 @@ Run `yarn test:ts` to make sure all Typescript tests pass.
 ```bash
 yarn test:ts
 ```
-
-Make sure `dist\modules\swagger\components.yaml` matches `src\modules\swagger\components.yaml`. Do this for any other non-ts/non-js files that you may have
-
-Compile your TS files to JS by running `yarn compile`
-
-```bash
-yarn compile
-```
-
-Manually fix remaining linting errors in the JS files
 
 ## Linting Errors After Compiling
 
