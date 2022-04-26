@@ -177,8 +177,6 @@ Compile your TS files to JS by running `yarn compile`
 yarn compile
 ```
 
-Manually fix remaining linting errors in the JS files
-
 ## Linting Errors After Compiling
 
 After compiling, you are likely to get linting errors since some were disabled through comments in TypeScript files. Currently, the following files get linting errors after running `yarn compile`:
