@@ -1,14 +1,57 @@
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 import request from 'supertest';
 import { faker } from '@faker-js/faker';
 import httpStatus from 'http-status';
+import moment from 'moment';
+import config from '../../config/config';
+import tokenTypes from '../token/token.types';
+import * as tokenService from '../token/token.service';
 import app from '../../app';
 import setupTestDB from '../jest/setupTestDB';
 import User from './user.model';
-import { userOne, userTwo, admin, insertUsers } from './user.fixture';
-import { userOneAccessToken, adminAccessToken } from '../token/token.fixture';
 import { NewCreatedUser } from './user.interfaces';
 
 setupTestDB();
+
+const password = 'password1';
+const salt = bcrypt.genSaltSync(8);
+const hashedPassword = bcrypt.hashSync(password, salt);
+const accessTokenExpires = moment().add(config.jwt.accessExpirationMinutes, 'minutes');
+
+const userOne = {
+  _id: new mongoose.Types.ObjectId(),
+  name: faker.name.findName(),
+  email: faker.internet.email().toLowerCase(),
+  password,
+  role: 'user',
+  isEmailVerified: false,
+};
+
+const userTwo = {
+  _id: new mongoose.Types.ObjectId(),
+  name: faker.name.findName(),
+  email: faker.internet.email().toLowerCase(),
+  password,
+  role: 'user',
+  isEmailVerified: false,
+};
+
+const admin = {
+  _id: new mongoose.Types.ObjectId(),
+  name: faker.name.findName(),
+  email: faker.internet.email().toLowerCase(),
+  password,
+  role: 'admin',
+  isEmailVerified: false,
+};
+
+const userOneAccessToken = tokenService.generateToken(userOne._id, accessTokenExpires, tokenTypes.ACCESS);
+const adminAccessToken = tokenService.generateToken(admin._id, accessTokenExpires, tokenTypes.ACCESS);
+
+const insertUsers = async (users: Record<string, any>[]) => {
+  await User.insertMany(users.map((user) => ({ ...user, password: hashedPassword })));
+};
 
 describe('User routes', () => {
   describe('POST /v1/users', () => {

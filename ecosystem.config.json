@@ -3,6 +3,7 @@
     {
       "name": "app",
       "script": "dist/index.js",
+      "node_args": "--experimental-modules --es-module-specifier-resolution=node",
       "instances": 1,
       "autorestart": true,
       "watch": false,
