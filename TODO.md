@@ -1,10 +1,10 @@
 ### Testing Tasks
 
 - [ ] Improve coverage
-- [ ] Add paginate tests
-- [ ] Add toJSON tests
+- [x] Add paginate tests
+- [x] Add toJSON tests
 
 ### Other Tasks
 
-- [ ] Have faker.js as a dev dependency
+- [x] Have faker.js as a dev dependency
 - [ ] Add Cookie Support

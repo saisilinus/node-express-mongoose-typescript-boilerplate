@@ -1,5 +1,6 @@
 /* eslint-disable jest/no-commented-out-tests */
 import { faker } from '@faker-js/faker';
+import mongoose from 'mongoose';
 import request from 'supertest';
 import httpStatus from 'http-status';
 import httpMocks from 'node-mocks-http';
@@ -10,16 +11,34 @@ import app from '../../app';
 import setupTestDB from '../jest/setupTestDB';
 import User from '../user/user.model';
 import config from '../../config/config';
-import { userOne, insertUsers } from '../user/user.fixture';
 import { NewRegisteredUser } from '../user/user.interfaces';
 import * as tokenService from '../token/token.service';
 import tokenTypes from '../token/token.types';
 import Token from '../token/token.model';
-import { userOneAccessToken } from '../token/token.fixture';
 import authMiddleware from './auth.middleware';
 import ApiError from '../errors/ApiError';
 
 setupTestDB();
+
+const password = 'password1';
+const salt = bcrypt.genSaltSync(8);
+const hashedPassword = bcrypt.hashSync(password, salt);
+const accessTokenExpires = moment().add(config.jwt.accessExpirationMinutes, 'minutes');
+
+const userOne = {
+  _id: new mongoose.Types.ObjectId(),
+  name: faker.name.findName(),
+  email: faker.internet.email().toLowerCase(),
+  password,
+  role: 'user',
+  isEmailVerified: false,
+};
+
+const userOneAccessToken = tokenService.generateToken(userOne._id, accessTokenExpires, tokenTypes.ACCESS);
+
+const insertUsers = async (users: Record<string, any>[]) => {
+  await User.insertMany(users.map((user) => ({ ...user, password: hashedPassword })));
+};
 
 describe('Auth routes', () => {
   describe('POST /v1/auth/register', () => {
