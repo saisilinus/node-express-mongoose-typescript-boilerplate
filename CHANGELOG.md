@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v2.0.0...v2.1.0) (2022-05-19)
+
+
+### Features
+
+* move faker to devdependencies ([e09711a](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/e09711aecd2e01b2dee208bc9c6052ce59514d39))
+
+
+### Bug Fixes
+
+* **package.json:** remove linting from start script ([ffa8c7e](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/ffa8c7e261a488cbd4e23113b0dade258869ca0c))
+
 ## [2.0.0](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v1.1.0...v2.0.0) (2022-04-26)
 
 
