@@ -11,8 +11,8 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "start": "tsc --build && eslint . --fix && pm2 start ecosystem.config.json --no-daemon",
-    "compile": "tsc --build && eslint . --fix",
+    "start": "tsc --build && pm2 start ecosystem.config.json --no-daemon",
+    "compile": "tsc --build",
     "compile:watch": "tsc --build --watch",
     "pre:dev": "cross-env NODE_ENV=development nodemon --experimental-modules --es-module-specifier-resolution=node dist/index.js",
     "dev": "concurrently --kill-others \"yarn compile:watch\" \"yarn pre:dev\"",
@@ -31,7 +31,7 @@
     "docker:test": "docker-compose -f docker-compose.yml -f docker-compose.test.yml up",
     "prepare": "husky install",
     "release": "standard-version",
-    "commit": "cz"
+    "commit": "git add -A && cz"
   },
   "keywords": [
     "node",
