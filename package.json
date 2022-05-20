@@ -130,5 +130,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "resolutions": {
+    "minimist@1.2.5": "1.2.6"
   }
 }

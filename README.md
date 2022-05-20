@@ -31,7 +31,6 @@ cp .env.example .env
 - [Features](#features)
 - [Commands](#commands)
 - [Making Changes](#making-changes)
-- [Linting Errors After Compiling](#linting-errors-after-compiling)
 - [Environment Variables](#environment-variables)
 - [Project Structure](#project-structure)
 - [API Documentation](#api-documentation)
@@ -69,7 +68,7 @@ cp .env.example .env
 - **Compression**: gzip compression with [compression](https://github.com/expressjs/compression)
 - **CI**: continuous integration with [GitHub CI](https://travis-ci.org)
 - **Docker support**
-- **Code coverage**: using [coveralls](https://coveralls.io)
+- **Code coverage**: using [codecov](https://about.codecov.io/)
 - **Code quality**: with [Codacy](https://www.codacy.com)
 - **Git hooks**: with [husky](https://github.com/typicode/husky) and [lint-staged](https://github.com/okonet/lint-staged)
 - **Linting**: with [ESLint](https://eslint.org) and [Prettier](https://prettier.io)
@@ -176,12 +175,6 @@ Run `yarn test:ts` to make sure all Typescript tests pass.
 yarn test:ts
 ```
 
-## Linting Errors After Compiling
-
-After compiling, you are likely to get linting errors since some were disabled through comments in TypeScript files. Currently, the following files get linting errors after running `yarn compile`:
-  - dist/modules/errors/error.js: fix -> disable `no-unused-vars` for the line
-  - dist/modules/toJSON/toJSON.plugin.js: fix -> disable `no-param-reassign` for the whole file
-
 ## Environment Variables
 
 The environment variables can be found and modified in the `.env` file. They come with these default values:
@@ -214,14 +207,6 @@ EMAIL_FROM=support@yourapp.com
 
 ```
 .
-├── dist                            # Destination files
-│   ├── app.js                        # Express App
-│   ├── app.js.map                    # TS source map file
-│   ├── config                        # Environment variables and other configurations
-│   ├── index.js                      # App entry file
-│   ├── index.js.map                  # TS source map file
-│   ├── modules                       # Modules such as models, controllers, services
-│   └── routes                        # Routes
 ├── src                             # Source files
 │   ├── app.ts                        # Express App
 │   ├── config                        # Environment variables and other configurations
