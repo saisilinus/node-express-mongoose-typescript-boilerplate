@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v2.1.0...v2.1.1) (2022-05-20)
+
+
+### Bug Fixes
+
+* **package.json:** fix minimist resolution ([416f6eb](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/416f6eb80d60fbcceb530adbaa2b8a51a92eb072))
+
 ## [2.1.0](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v2.0.0...v2.1.0) (2022-05-19)
 
 
