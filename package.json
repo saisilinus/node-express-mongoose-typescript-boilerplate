@@ -77,10 +77,8 @@
     "@types/validator": "^13.7.0",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
-    "commitizen": "^4.2.4",
     "concurrently": "^7.1.0",
     "coveralls": "^3.1.1",
-    "cz-conventional-changelog": "3.3.0",
     "eslint": "^8.4.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^16.1.0",
@@ -98,7 +96,9 @@
     "standard-version": "^9.3.2",
     "supertest": "^6.1.6",
     "ts-jest": "^27.1.3",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "@ryansonshine/commitizen": "^4.2.8",
+    "@ryansonshine/cz-conventional-changelog": "^3.3.4"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -128,10 +128,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./node_modules/@ryansonshine/cz-conventional-changelog"
     }
-  },
-  "resolutions": {
-    "commitizen/minimist": "1.2.6"
   }
 }
