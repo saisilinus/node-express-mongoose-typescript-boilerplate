@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.2](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v2.1.1...v2.1.2) (2022-05-21)
+
+
+### Bug Fixes
+
+* **package.json:** update commitizen to secure version ([12c263c](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/12c263c37f2809494dbb33054083be13c6c85bca))
+* update yarn.lock ([66d6e5d](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/66d6e5d9bb06350e506672a2368ea92c1fbce4eb))
+
 ### [2.1.1](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v2.1.0...v2.1.1) (2022-05-20)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "node-express-mongoose-typescript-boilerplate",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Node express mongoose typescript boilerplate",
   "main": "dist/index.js",
   "repository": "https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate.git",
