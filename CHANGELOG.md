@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v2.1.3...v2.2.0) (2022-09-23)
+
+
+### Features
+
+* upgrade nodemon ([8e223e9](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/8e223e9f8a857adf9f9f0b280cdac4af1a30d9a3))
+
 ### [2.1.3](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v2.1.2...v2.1.3) (2022-09-21)
 
 ### [2.1.2](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v2.1.1...v2.1.2) (2022-05-21)
