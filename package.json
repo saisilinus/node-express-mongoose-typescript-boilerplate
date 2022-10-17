@@ -4,7 +4,10 @@
   "description": "Node express mongoose typescript boilerplate",
   "main": "dist/index.js",
   "repository": "https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate.git",
-  "author": "wafula saisi <waflinus96@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/issues"
+  },
+  "author": "wafula saisi <saisilinus.work@gmail.com>",
   "license": "MIT",
   "type": "module",
   "engines": {
