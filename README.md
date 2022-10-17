@@ -5,6 +5,22 @@
 
 This project pairs well with this [React Template](https://github.com/saisilinus/react-redux-typescript-boilerplate)
 
+By running a single command, you will get a production-ready Node.js TypeScript app installed and fully configured on your machine. The app comes with many built-in features, such as authentication using JWT, request validation, unit and integration tests, continuous integration, docker support, API documentation, pagination, etc. For more details, check the features list below.
+
+## Quick Start
+
+To create a project, simply run:
+
+```bash
+npx create-nodejs-ts-app <project-name>
+```
+
+Or
+
+```bash
+npm init nodejs-ts-app <project-name>
+```
+
 ## Manual Installation
 
 Clone the repo:
