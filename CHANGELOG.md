@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v2.3.0...v2.4.0) (2022-10-17)
+
+
+### Features
+
+* add a security measure to  forgot-password ([dad0e99](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/dad0e9990c4d4882d765c383153aeb28bbd5b9c6))
+* add front-end url as an env variable ([9dd8932](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/9dd8932f6b8d7cad082df9030dc6db0c070a24f8))
+
+
+### Bug Fixes
+
+* include FRONT_URL in the workflow ([8674603](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/8674603c6d086ff06461334ca9871818d3d4288b))
+
 ## [2.3.0](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v2.2.1...v2.3.0) (2022-10-17)
 
 
