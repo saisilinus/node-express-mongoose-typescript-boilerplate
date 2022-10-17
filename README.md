@@ -203,6 +203,7 @@ SMTP_PORT=587
 SMTP_USERNAME=email-server-username
 SMTP_PASSWORD=email-server-password
 EMAIL_FROM=support@yourapp.com
+FRONT_URL=http://localhost:5000
 ```
 
 ## Project Structure
