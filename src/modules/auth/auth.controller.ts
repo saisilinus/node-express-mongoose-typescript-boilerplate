@@ -32,7 +32,7 @@ export const refreshTokens = catchAsync(async (req: Request, res: Response) => {
 export const forgotPassword = catchAsync(async (req: Request, res: Response) => {
   const resetPasswordToken = await tokenService.generateResetPasswordToken(req.body.email);
   await emailService.sendResetPasswordEmail(req.body.email, resetPasswordToken);
-  res.status(httpStatus.NO_CONTENT).send('');
+  res.status(httpStatus.NO_CONTENT).send();
 });
 
 export const resetPassword = catchAsync(async (req: Request, res: Response) => {
