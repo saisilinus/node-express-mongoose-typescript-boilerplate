@@ -20,7 +20,7 @@ const envVarsSchema = Joi.object()
     SMTP_USERNAME: Joi.string().description('username for email server'),
     SMTP_PASSWORD: Joi.string().description('password for email server'),
     EMAIL_FROM: Joi.string().description('the from field in the emails sent by the app'),
-    FRONT_URL: Joi.string().required().description('Front url'),
+    CLIENT_URL: Joi.string().required().description('Client url'),
   })
   .unknown();
 
@@ -64,7 +64,7 @@ const config = {
     },
     from: envVars.EMAIL_FROM,
   },
-  frontUrl: envVars.FRONT_URL,
+  clientUrl: envVars.CLIENT_URL,
 };
 
 export default config;

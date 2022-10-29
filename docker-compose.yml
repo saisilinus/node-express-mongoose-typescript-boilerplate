@@ -1,32 +1,36 @@
 version: '3'
 
 services:
-  node-app:
-    build: .
-    image: node-app
-    environment:
-      - MONGODB_URL=mongodb://mongodb:27017/node-app
-    ports:
-      - '3000:3000'
-    depends_on:
-      - mongodb
-    volumes:
-      - .:/usr/dist/node-app
-    networks:
-      - node-app-network
-
-  mongodb:
+  mongo:
+    container_name: mongo
     image: mongo:4.2.1-bionic
+    restart: always
     ports:
-      - '27017:27017'
-    volumes:
-      - dbdata:/data/db
+      - "27018:27017"
     networks:
-      - node-app-network
-
-volumes:
-  dbdata:
+      - backend
+  app:
+    container_name: ts-node-app
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    restart: always
+    env_file: .env
+    expose:
+      - ${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    environment: 
+      - MONGODB_URL=mongodb://mongo:27017/node-boilerplate
+      - CLIENT_URL=${CLIENT_URL}
+    links: 
+      - mongo  
+    depends_on:
+      - mongo  
+    networks:
+      - backend
 
 networks:
-  node-app-network:
-    driver: bridge
+  backend:
+    driver: bridge    
