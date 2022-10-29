@@ -1,6 +1,8 @@
 version: '3'
 
 services:
-  node-app:
-    container_name: node-app-prod
+  app:
+    container_name: ts-node-app-prod
+    build: 
+      target: production
     command: yarn start

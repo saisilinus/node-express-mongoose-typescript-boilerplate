@@ -11,5 +11,8 @@ yarn-error.log
 # Code coverage
 coverage
 
-# bunlde folder
+# build folder
 dist
+
+# docker volume
+data

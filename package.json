@@ -15,7 +15,8 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "start": "tsc --build && pm2 start ecosystem.config.json --no-daemon",
+    "start": "pm2 start ecosystem.config.json --no-daemon",
+    "start:build": "tsc --build && pm2 start ecosystem.config.json --no-daemon",
     "compile": "tsc --build",
     "compile:watch": "tsc --build --watch",
     "pre:dev": "cross-env NODE_ENV=development nodemon --experimental-modules --es-module-specifier-resolution=node dist/index.js",
