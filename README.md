@@ -3,9 +3,13 @@
 [![Node.js CI](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/actions/workflows/node.js.yml/badge.svg)](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/actions/workflows/node.js.yml)
 [![codecov](https://codecov.io/gh/saisilinus/node-express-mongoose-typescript-boilerplate/branch/master/graph/badge.svg?token=UYJAL9KTMD)](https://codecov.io/gh/saisilinus/node-express-mongoose-typescript-boilerplate)
 
-This project pairs well with this [React Template](https://github.com/saisilinus/react-redux-typescript-boilerplate)
-
 By running a single command, you will get a production-ready Node.js TypeScript app installed and fully configured on your machine. The app comes with many built-in features, such as authentication using JWT, request validation, unit and integration tests, continuous integration, docker support, API documentation, pagination, etc. For more details, check the features list below.
+
+## Not Compatible with Node.js v19
+
+Node.js has deprecated the `--es-module-specifier-resolution=node` flag, used in this app, in the release of [Node.js v19](https://nodejs.org/en/blog/announcements/v19-release-announce/#custom-esm-resolution-adjustments) in favor of [custom loaders](https://github.com/nodejs/loaders-test/tree/main/commonjs-extension-resolution-loader). You can check out the PR [here](https://github.com/nodejs/node/pull/44859).
+
+As a result, this app is not compatible with Node.js >=19. You can add support to your app using this [loader](https://github.com/nodejs/loaders-test/tree/main/commonjs-extension-resolution-loader)
 
 ## Quick Start
 
