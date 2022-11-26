@@ -1,6 +1,6 @@
 {
   "name": "create-nodejs-ts-app",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Node express mongoose typescript boilerplate",
   "main": "dist/index.js",
   "bin": "bin/createNodetsApp.cjs",

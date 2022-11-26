@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.3](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v3.0.2...v3.0.3) (2022-11-26)
+
+
+### Bug Fixes
+
+* **package.json:** remove auto npm publish ([1c23583](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/commit/1c235836497095f01362a89d44a7b1ae51ae28cd))
+
 ### [3.0.2](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v3.0.1...v3.0.2) (2022-11-26)
 
 ### [3.0.1](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v3.0.0...v3.0.1) (2022-11-26)
