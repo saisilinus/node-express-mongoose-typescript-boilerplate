@@ -4891,7 +4891,7 @@ jsonparse@^1.2.0:
   resolved "https://registry.npmjs.org/jsonparse/-/jsonparse-1.3.1.tgz"
   integrity sha1-P02uSpH6wxX3EGL4UhzCOfE2YoA=
 
-jsonwebtoken@^8.2.0, jsonwebtoken@^8.5.1:
+jsonwebtoken@^8.2.0:
   version "8.5.1"
   resolved "https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-8.5.1.tgz"
   integrity sha512-XjwVfRS6jTMsqYs0EsuJ4LGxXV14zQybNd4L2r0UvbVnSF9Af8x7p5MzbJ90Ioz/9TI41/hTCvznF/loiSzn8w==
@@ -4906,6 +4906,16 @@ jsonwebtoken@^8.2.0, jsonwebtoken@^8.5.1:
     lodash.once "^4.0.0"
     ms "^2.1.1"
     semver "^5.6.0"
+
+jsonwebtoken@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-9.0.0.tgz#d0faf9ba1cc3a56255fe49c0961a67e520c1926d"
+  integrity sha512-tuGfYXxkQGDPnLJ7SibiQgVgeDgfbPq2k2ICcbgqW8WxWLBAxKQM/ZCu/IT8SOSwmaYl4dpTFCW5xZv7YbbWUw==
+  dependencies:
+    jws "^3.2.2"
+    lodash "^4.17.21"
+    ms "^2.1.1"
+    semver "^7.3.8"
 
 jsprim@^1.2.2:
   version "1.4.2"
@@ -5196,11 +5206,6 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
-
-lru-cache@^7.4.0:
-  version "7.8.0"
-  resolved "https://registry.npmjs.org/lru-cache/-/lru-cache-7.8.0.tgz"
-  integrity sha512-AmXqneQZL3KZMIgBpaPTeI6pfwh+xQ2vutMsyqOu1TBdEXFZgpG/80wuJ531w2ZN7TI0/oc8CPxzh/DKQudZqg==
 
 make-dir@^3.0.0:
   version "3.1.0"
@@ -6543,24 +6548,17 @@ semver@6.3.0, semver@^6.0.0, semver@^6.3.0:
   resolved "https://registry.npmjs.org/semver/-/semver-6.3.0.tgz"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
-semver@7.3.5, semver@7.x, semver@^7.2, semver@^7.2.1, semver@^7.3.2, semver@^7.3.5:
+semver@7.3.5:
   version "7.3.5"
   resolved "https://registry.npmjs.org/semver/-/semver-7.3.5.tgz"
   integrity sha512-PoeGJYh8HK4BTO/a9Tf6ZG3veo/A7ZVsYrSA6J8ny9nb3B1VrpkuN+z9OE5wfE5p6H4LchYZsegiQgbJD94ZFQ==
   dependencies:
     lru-cache "^6.0.0"
 
-semver@^7.1.1:
-  version "7.3.6"
-  resolved "https://registry.npmjs.org/semver/-/semver-7.3.6.tgz"
-  integrity sha512-HZWqcgwLsjaX1HBD31msI/rXktuIhS+lWvdE4kN9z+8IVT4Itc7vqU2WvYsyD6/sjYCt4dEKH/m1M3dwI9CC5w==
-  dependencies:
-    lru-cache "^7.4.0"
-
-semver@^7.3.4:
-  version "7.3.7"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.7.tgz#12c5b649afdbf9049707796e22a4028814ce523f"
-  integrity sha512-QlYTucUYOews+WeEujDoEGziz4K6c47V/Bd+LjSSYcA94p+DmINdf7ncaUinThfvZyu13lN9OY1XDxt8C0Tw0g==
+semver@7.x, semver@^7.1.1, semver@^7.2, semver@^7.2.1, semver@^7.3.2, semver@^7.3.4, semver@^7.3.5, semver@^7.3.8:
+  version "7.3.8"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.8.tgz#07a78feafb3f7b32347d725e33de7e2a2df67798"
+  integrity sha512-NB1ctGL5rlHrPJtFDVIVzTyQylMLu9N9VICA6HSFJo8MCGVTMW6gfpicwKmmK/dAjTOrqu5l63JJOpDSrAis3A==
   dependencies:
     lru-cache "^6.0.0"
 
