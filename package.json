@@ -119,7 +119,7 @@
     "joi": "^17.5.0",
     "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
-    "mongoose": "^6.4.6",
+    "mongoose": "^7.0.2",
     "morgan": "^1.10.0",
     "nodemailer": "^6.7.2",
     "passport": "^0.6.0",
