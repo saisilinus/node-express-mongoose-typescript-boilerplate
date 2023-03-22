@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { Schema, Document } from 'mongoose';
+import { Schema, Document, Model } from 'mongoose';
 
 export interface QueryResult {
   results: Document[];
@@ -17,7 +17,7 @@ export interface IOptions {
   page?: number;
 }
 
-const paginate = (schema: Schema) => {
+const paginate = <T extends Document, U extends Model<U>>(schema: Schema<T>): void => {
   /**
    * @typedef {Object} QueryResult
    * @property {Document[]} results - Results found
