@@ -31,7 +31,7 @@ export const logout = async (refreshToken: string): Promise<void> => {
   if (!refreshTokenDoc) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Not found');
   }
-  await refreshTokenDoc.remove();
+  await refreshTokenDoc.deleteOne();
 };
 
 /**
@@ -46,7 +46,7 @@ export const refreshAuth = async (refreshToken: string): Promise<IUserWithTokens
     if (!user) {
       throw new Error();
     }
-    await refreshTokenDoc.remove();
+    await refreshTokenDoc.deleteOne();
     const tokens = await generateAuthTokens(user);
     return { user, tokens };
   } catch (error) {
