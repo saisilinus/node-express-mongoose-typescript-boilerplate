@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.9](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v3.0.8...v3.0.9) (2023-05-04)
+
 ### [3.0.8](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v3.0.7...v3.0.8) (2023-04-13)
 
 ### [3.0.7](https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate/compare/v3.0.6...v3.0.7) (2023-04-10)
