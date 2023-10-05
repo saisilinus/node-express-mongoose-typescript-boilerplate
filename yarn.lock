@@ -7076,9 +7076,9 @@ symbol-tree@^3.2.4:
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
 
 systeminformation@^5.7:
-  version "5.11.9"
-  resolved "https://registry.npmjs.org/systeminformation/-/systeminformation-5.11.9.tgz"
-  integrity sha512-eeMtL9UJFR/LYG+2rpeAgZ0Va4ojlNQTkYiQH/xbbPwDjDMsaetj3Pkc+C1aH5G8mav6HvDY8kI4Vl4noksSkA==
+  version "5.21.10"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.21.10.tgz#c9499ea4b88c13602d97ee879850decac6de8d8d"
+  integrity sha512-AUPgLI70zycKM4QhPLj4fPVCx06HLlMKR7deJxkdLpSgnT6VDxP0kXUusrgbI/f8XScf9IMufFPeJ9FGHHeaIg==
 
 terminal-link@^2.0.0:
   version "2.1.1"
