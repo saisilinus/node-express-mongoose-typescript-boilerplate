@@ -18,6 +18,33 @@ components:
         email: fake@example.com
         name: fake name
         role: user
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        userId:
+          type: string
+        stock:
+          type: object
+          properties:
+            id:
+              type: string
+            quantity:
+              type: number
+      example:
+        id: 5ebac534954b54139806c112
+        name: fake name
+        description: fake description
+        number: 10
+        userId: 1232asd34954b54139806c775
+        stock: { id: 1ebx5578414b54139806p1231, quantity: 10 }
 
     Token:
       type: object
