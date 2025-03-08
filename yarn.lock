@@ -1228,6 +1228,20 @@
   dependencies:
     "@types/node" "*"
 
+"@types/helmet@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/helmet/-/helmet-4.0.0.tgz#af7af46de26abe368b85360769ae9938bfb2318a"
+  integrity sha512-ONIn/nSNQA57yRge3oaMQESef/6QhoeX7llWeDli0UZIfz8TQMkfNPTXA8VnnyeA1WUjG2pGqdjEIueYonMdfQ==
+  dependencies:
+    helmet "*"
+
+"@types/http-status@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@types/http-status/-/http-status-1.1.2.tgz#1f4d34e2df526b62f23db98e93c862603fcef22a"
+  integrity sha512-GodZPvF3xPVglUx4q7s0plKu1cdW0mMLADpWi5PMMx3n/2xGB6GoKqQxQxp6A5xuARtZpQ9/6p3WDFwCpPaN8A==
+  dependencies:
+    http-status "*"
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.3"
   resolved "https://registry.npmjs.org/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.3.tgz"
@@ -3948,6 +3962,11 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+helmet@*:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/helmet/-/helmet-7.0.0.tgz#ac3011ba82fa2467f58075afa58a49427ba6212d"
+  integrity sha512-MsIgYmdBh460ZZ8cJC81q4XJknjG567wzEmv46WOBblDb6TUd3z8/GhgmsM9pn8g2B80tAJ4m5/d3Bi1KrSUBQ==
+
 helmet@^4.6.0:
   version "4.6.0"
   resolved "https://registry.npmjs.org/helmet/-/helmet-4.6.0.tgz"
@@ -4023,6 +4042,11 @@ http-signature@~1.2.0:
     assert-plus "^1.0.0"
     jsprim "^1.2.2"
     sshpk "^1.7.0"
+
+http-status@*:
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/http-status/-/http-status-1.7.3.tgz#d6dcc3a5a3fb5b1bfcc6ad2b38af0b7258bc1459"
+  integrity sha512-GS8tL1qHT2nBCMJDYMHGkkkKQLNkIAHz37vgO68XKvzv+XyqB4oh/DfmMHdtRzfqSJPj1xKG2TaELZtlCz6BEQ==
 
 http-status@^1.5.0:
   version "1.5.0"
